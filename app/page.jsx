@@ -5,6 +5,7 @@ import { SectionLabel } from "@/components/section-label";
 import { SiteHeader } from "@/components/site-header";
 import { StatusPill } from "@/components/status-pill";
 import { Icon } from "@/components/icon";
+import { ReviewSection } from "@/components/review-section";
 import {
   confidenceStats,
   contactActions,
@@ -22,7 +23,9 @@ import {
   sampleVehicle,
   serviceNotes,
   testimonial,
-  trustPillars
+  trustPillars,
+  reviewItems,
+  proofGalleryItems
 } from "@/app/site-data";
 
 const heroScore = 94;
@@ -55,12 +58,24 @@ export default function HomePage() {
       <section className="hero-section">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <SectionLabel>Independent car inspection before you pay</SectionLabel>
-            <h1>Know the real condition before you buy.</h1>
+            <SectionLabel>Real-time car inspection before handover</SectionLabel>
+            <h1>Make a safer car decision before you pay.</h1>
             <p className="hero-text">
-              CheckMate sends a trained inspector to verify the car, capture photo evidence, and
-              share a decision-ready report on the same day.
+              CheckMate helps buyers inspect the vehicle with expert PDI and post-delivery checks,
+              real photo evidence, and a clear WhatsApp-ready report in minutes.
             </p>
+
+            <div className="hero-badges">
+              {[
+                "Independent inspections",
+                "Photo-backed evidence",
+                "Same-day WhatsApp report"
+              ].map((item) => (
+                <span className="hero-badge" key={item}>
+                  {item}
+                </span>
+              ))}
+            </div>
 
             <div className="hero-actions">
               <a className="button button-solid" href="#contact">
@@ -134,13 +149,19 @@ export default function HomePage() {
       </section>
 
       <section className="metrics-strip">
-        <div className="container metrics-grid">
-          {confidenceStats.map((stat) => (
-            <div className="metric-chip" key={stat}>
-              <Icon className="metric-chip-icon" name="shield" />
-              <span>{stat}</span>
-            </div>
-          ))}
+        <div className="container metrics-shell">
+          <div className="metrics-copy">
+            <p className="eyebrow">Trusted by serious buyers</p>
+            <h3>Every report is built to help you decide with clarity instead of guesswork.</h3>
+          </div>
+          <div className="metrics-grid">
+            {confidenceStats.map((stat) => (
+              <div className="metric-chip" key={stat}>
+                <Icon className="metric-chip-icon" name="shield" />
+                <span>{stat}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -148,13 +169,50 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading section-heading-split">
             <div>
-              <SectionLabel>Why buyers choose CheckMate</SectionLabel>
-              <h2>Clear answers before token payment or final handover.</h2>
+              <SectionLabel>Why choose us</SectionLabel>
+              <h2>A sharper way to inspect a car before ownership changes hands.</h2>
             </div>
             <p>
-              We focus on the information that changes a buying decision: condition, evidence,
-              documentation, and fast report delivery.
+              The goal is simple: turn a stressful handover into a calm, evidence-led decision with
+              no guesswork and no hidden surprises.
             </p>
+          </div>
+
+          <div className="section-intro-grid">
+            <article className="section-intro-card">
+              <p className="eyebrow">Why buyers trust the process</p>
+              <h3>Independent, detail-led inspections that make the buying decision feel calm and clear.</h3>
+              <p>
+                We document the car the way a careful buyer would want to see it: plainly,
+                honestly, and with proof that is easy to review.
+              </p>
+              <div className="section-intro-metrics">
+                <div>
+                  <strong>84</strong>
+                  <span>structured checklist</span>
+                </div>
+                <div>
+                  <strong>15+</strong>
+                  <span>years of experience</span>
+                </div>
+                <div>
+                  <strong>100%</strong>
+                  <span>photo-backed findings</span>
+                </div>
+              </div>
+            </article>
+            <div className="section-intro-stack">
+              <article className="intro-highlight-card">
+                <Icon className="pillar-icon" name="shield" />
+                <h3>Built for real negotiation</h3>
+                <p>Use the report to negotiate repairs, ask for clarity, or walk away with confidence.</p>
+              </article>
+              <article className="intro-highlight-card">
+                <Icon className="pillar-icon" name="calendar" />
+                <h3>Fast delivery when timing matters</h3>
+                <p>Get decision-ready documentation quickly so the deal does not lose momentum.</p>
+              </article>
+            </div>
           </div>
 
           <div className="pillar-grid">
@@ -175,8 +233,8 @@ export default function HomePage() {
             <SectionLabel>How it works</SectionLabel>
             <h2>A simple process built for fast and confident buying decisions.</h2>
             <p>
-              The service is designed to be easy to follow from booking through final report
-              delivery.
+              The process is straightforward, practical, and designed to give you clarity before a
+              payment is made.
             </p>
           </div>
 
@@ -192,14 +250,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-space section-space-tight" id="proof">
+        <div className="container">
+          <div className="section-heading section-heading-split">
+            <div>
+              <SectionLabel>Real proof from real inspections</SectionLabel>
+              <h2>Every issue is documented clearly so you can act with confidence.</h2>
+            </div>
+            <p>
+              These are the kinds of details buyers want to see before moving forward: clear,
+              honest, and easy to share.
+            </p>
+          </div>
+
+          <div className="proof-grid">
+            {proofGalleryItems.map((item) => (
+              <article className="proof-card" key={item.title}>
+                <div className="proof-image-wrap">
+                  <Image alt={item.title} fill sizes="(max-width: 720px) 100vw, 33vw" src={item.image} />
+                </div>
+                <div className="proof-card-body">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-space" id="inspection-areas">
         <div className="container">
           <div className="section-heading">
             <SectionLabel>Complete inspection coverage</SectionLabel>
             <h2>Every major area is checked, graded, and explained.</h2>
             <p>
-              Buyers can scan what is covered in seconds, then open any section to see the exact
-              checklist items.
+              Every major area is checked with a structured flow, so the report is both easy to scan
+              and thorough enough to trust.
             </p>
           </div>
 
@@ -286,8 +373,8 @@ export default function HomePage() {
             <SectionLabel>Professional inspectors</SectionLabel>
             <h2>Real people. Real evidence. A report you can actually act on.</h2>
             <p>
-              The inspection is documented with the discipline expected from a serious vehicle
-              purchase, not a casual showroom walkthrough.
+              The inspection is documented with the seriousness a real purchase deserves, not a quick
+              walkaround done for appearances.
             </p>
 
             <div className="professional-grid">
@@ -323,14 +410,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-space" id="reviews">
+        <div className="container">
+          <div className="section-heading">
+            <SectionLabel>Buyer reviews</SectionLabel>
+            <h2>Real inspection reports and proof from customers who avoided hidden risks.</h2>
+            <p>
+              Each review includes the car model, dealer city, supporting photos, the problem found,
+              estimated repair cost, and the value saved by making a smart decision before delivery.
+            </p>
+          </div>
+          <ReviewSection initialReviews={[]} />
+        </div>
+      </section>
+
       <section className="section-space section-space-tight" id="contact">
         <div className="container cta-card">
           <div className="cta-copy">
             <SectionLabel>Book your inspection</SectionLabel>
             <h2>Simple to book. Easy to understand. Fast to act on.</h2>
             <p>
-              Reach out with the car details, preferred inspection slot, and city. The team will
-              guide the next steps and share the final report digitally.
+              Share the car details, preferred slot, and city. The team will guide the next steps and
+              send the report in a format you can act on immediately.
             </p>
 
             <ul className="cta-list">

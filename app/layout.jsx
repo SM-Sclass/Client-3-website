@@ -25,7 +25,7 @@ const bodyFont = localFont({
 });
 
 export const metadata = {
-  title: "CheckMate PDI Expert",
+  title: "CheckMate PDI Expert | Premium Car Inspection Reports",
   description:
     "Independent pre-purchase and pre-delivery car inspection with photo evidence, structured reports, and same-day buyer clarity."
 };

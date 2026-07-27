@@ -1,6 +1,8 @@
 export const navigation = [
   { label: "How It Works", href: "#our-process" },
+  { label: "Proof", href: "#proof" },
   { label: "Coverage", href: "#inspection-areas" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Sample Report", href: "#sample-report" },
   { label: "Why Buyers Trust Us", href: "#trust" },
   { label: "Contact", href: "#contact" }
@@ -248,6 +250,10 @@ export const evidenceItems = [
   { label: "Front bumper scratch", status: "Minor Issue" },
   { label: "Right rear door paint fade", status: "Minor Issue" },
   { label: "Rear bumper dent", status: "Major Issue" },
+  {
+    label: "Scrap market / replaced engine",
+    status: "Major Issue"
+  },
   { label: "Tyre tread wear", status: "Minor Issue" }
 ];
 
@@ -293,6 +299,75 @@ export const testimonial = {
   name: "Rohit Mehta",
   location: "Pune, Maharashtra"
 };
+
+export const reviewItems = [
+  {
+    name: "Arjun Patel",
+    rating: 5,
+    carModel: "Hyundai Creta SX(O)",
+    city: "Pune",
+    problem: "Hidden front bumper leak and engine bay fluid trail discovered before delivery.",
+    cost: "₹18,000",
+    saved: "Avoided paying for a car with a developing coolant leak and possible head gasket issue.",
+    photos: [
+      "/assets/inspection-proof-01.jpeg",
+      "/assets/inspection-proof-02.jpeg",
+      "/assets/inspection-proof-03.jpeg",
+      "/assets/inspection-proof-04.jpeg",
+      "/assets/inspection-proof-05.jpeg",
+      "/assets/inspection-proof-06.jpeg"
+    ],
+    date: "2 days ago"
+  }
+];
+
+export const proofGalleryItems = [
+  {
+    title: "Exterior damage captured clearly",
+    text: "Panel wear, paint issues, and dents are shown with enough detail for buyers to understand the condition before paying.",
+    image: "/assets/inspection-proof-01.jpeg"
+  },
+  {
+    title: "Interior wear and cabin condition",
+    text: "Seat wear, trim condition, and cabin details are documented in a way that feels real and easy to trust.",
+    image: "/assets/inspection-proof-02.jpeg"
+  },
+  {
+    title: "Mechanical concern with evidence",
+    text: "The report keeps engine bay and mechanical issues visible so nothing gets brushed aside during handover.",
+    image: "/assets/inspection-proof-03.jpeg"
+  },
+  {
+    title: "Tyre and wheel condition review",
+    text: "Rubber wear and wheel condition are captured so buyers can see the practical risk before finalizing the deal.",
+    image: "/assets/inspection-proof-04.jpeg"
+  },
+  {
+    title: "Real-world inspection snapshot",
+    text: "These are actual inspection moments that make the report feel grounded and relatable for a buyer reviewing options.",
+    image: "/assets/inspection-proof-05.jpeg"
+  },
+  {
+    title: "Documentation that supports decision-making",
+    text: "Visual evidence is paired with the checklist so the buyer has both context and proof in one place.",
+    image: "/assets/inspection-proof-06.jpeg"
+  },
+  {
+    title: "Detailed proof for remote buyers",
+    text: "Even when the buyer is not present, the images make the condition clear enough to act on confidently.",
+    image: "/assets/inspection-proof-07.jpeg"
+  },
+  {
+    title: "Clear evidence for negotiation",
+    text: "The visuals help buyers point out concerns professionally and negotiate with facts rather than assumptions.",
+    image: "/assets/inspection-proof-08.jpeg"
+  },
+  {
+    title: "WhatsApp-ready inspection proof",
+    text: "The same evidence can be shared instantly with the buyer, dealer, or family for a quicker decision.",
+    image: "/assets/inspection-proof-09.jpeg"
+  }
+];
 
 export const ctaChecklist = [
   "Pre-purchase and pre-delivery inspections",
