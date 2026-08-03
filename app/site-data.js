@@ -11,15 +11,42 @@ export const navigation = [
 export const heroHighlights = [
   {
     title: "Independent report",
-    text: "Clear findings for the buyer, without pressure from the seller or showroom."
+    text: "Clear findings for the buyer, with no showroom pressure or sales bias."
   },
   {
     title: "Photo-backed evidence",
-    text: "Important issues are supported with visuals so the report is easy to trust."
+    text: "Every issue is supported with images so you can evaluate the car instantly."
   },
   {
-    title: "Same-day clarity",
-    text: "Move forward, negotiate, or walk away while the deal is still in your hands."
+    title: "Decision-ready delivery",
+    text: "A polished report delivered fast so you can negotiate or accept with confidence."
+  }
+];
+
+export const heroSlides = [
+  {
+    name: "Defender",
+    title: "Premium SUV inspection before delivery.",
+    text: "Thorough checks for body, engine, and finish to ensure a premium handover.",
+    image: "/assets/hero-car.png"
+  },
+  {
+    name: "Maruti Suzuki",
+    title: "Affordable and trusted inspection for every family car.",
+    text: "A careful inspection for family vehicles with clear photo-backed findings.",
+    image: "/assets/inspection-proof-01.jpeg"
+  },
+  {
+    name: "Mahindra",
+    title: "Complete 360° inspection for SUVs and commercial vehicles.",
+    text: "Robust checks for larger vehicles, from chassis to cabin to powertrain.",
+    image: "/assets/inspection-proof-02.jpeg"
+  },
+  {
+    name: "Toyota",
+    title: "Professional inspection with detailed photo-backed reports.",
+    text: "Fast, transparent inspection reports that help you decide with confidence.",
+    image: "/assets/inspection-proof-03.jpeg"
   }
 ];
 
@@ -32,39 +59,39 @@ export const confidenceStats = [
 
 export const trustPillars = [
   {
-    title: "Unbiased inspection",
-    text: "The report is built for the buyer, with clear grading and no sales language."
+    title: "Buyer-first inspection",
+    text: "Reports are written for the buyer, not the seller, so your decisions are based on facts."
   },
   {
-    title: "Evidence that explains the issue",
-    text: "Photos, notes, and condition markers show what matters before you pay."
+    title: "Visual evidence",
+    text: "Each finding includes photos and clear notes so nothing is left to doubt."
   },
   {
-    title: "Field inspectors who know cars",
-    text: "Experienced inspectors follow a structured process instead of a quick walkaround."
+    title: "Experienced field inspectors",
+    text: "Certified inspectors follow a structured checklist rather than a quick walkaround."
   },
   {
-    title: "Fast delivery for real decisions",
-    text: "You get the summary quickly enough to negotiate, shortlist, or reject the vehicle."
+    title: "Fast, usable delivery",
+    text: "Your report arrives quickly in a format that is easy to review and share."
   }
 ];
 
 export const processSteps = [
   {
-    title: "Share the vehicle details",
-    text: "Send the listing, location, and preferred slot so the team can prepare for the visit."
+    title: "Share Vehicle Details",
+    text: "Send your car details, showroom location, and preferred inspection slot."
   },
   {
-    title: "Inspector reaches the car",
-    text: "A trained inspector checks the vehicle on-site using the full reporting checklist."
+    title: "Inspector Visit",
+    text: "A certified inspector performs a structured 350+ point check at the location."
   },
   {
-    title: "Condition is documented",
-    text: "Panels, tyres, cabin, engine bay, electrical systems, and supporting evidence are recorded."
+    title: "Photo Report",
+    text: "Receive a clean, photo-backed inspection report within minutes."
   },
   {
-    title: "You receive the final report",
-    text: "The result is delivered in a format that is easy to scan, understand, and act on."
+    title: "Buy with Confidence",
+    text: "Decide with clarity using unbiased findings and clear issue evidence."
   }
 ];
 

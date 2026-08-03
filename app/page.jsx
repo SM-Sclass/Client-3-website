@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BrandMark } from "@/components/brand-mark";
+import { HeroSlider } from "@/components/hero-slider";
 import { InspectionSectionCard } from "@/components/inspection-section-card";
 import { SectionLabel } from "@/components/section-label";
 import { SiteHeader } from "@/components/site-header";
@@ -25,7 +26,8 @@ import {
   testimonial,
   trustPillars,
   reviewItems,
-  proofGalleryItems
+  proofGalleryItems,
+  heroSlides
 } from "@/app/site-data";
 
 const heroScore = 94;
@@ -58,92 +60,63 @@ export default function HomePage() {
       <section className="hero-section">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <SectionLabel>Real-time car inspection before handover</SectionLabel>
-            <h1>Make a safer car decision before you pay.</h1>
+            <div className="hero-price-pill">PDI Starts at ₹999* Only</div>
+            <SectionLabel>Trusted car inspection for every buyer</SectionLabel>
+            <h1>Premium pre-delivery inspections for confident car purchases.</h1>
             <p className="hero-text">
-              CheckMate helps buyers inspect the vehicle with expert PDI and post-delivery checks,
-              real photo evidence, and a clear WhatsApp-ready report in minutes.
+              Our certified inspectors perform a complete 350+ point pre-delivery inspection, capturing every major detail with photo-backed evidence and executive findings.
+            </p>
+            <p className="hero-text hero-text-extended">
+              Get a polished, decision-ready report delivered fast so you can buy with clarity and avoid unexpected issues after handover.
             </p>
 
-            <div className="hero-badges">
-              {[
-                "Independent inspections",
-                "Photo-backed evidence",
-                "Same-day WhatsApp report"
-              ].map((item) => (
-                <span className="hero-badge" key={item}>
-                  {item}
-                </span>
-              ))}
+            <div className="hero-badge-grid">
+              <div className="hero-badge-card">350+ checkpoints</div>
+              <div className="hero-badge-card">Same-day report delivery</div>
+              <div className="hero-badge-card">Photo-backed findings</div>
             </div>
 
             <div className="hero-actions">
               <a className="button button-solid" href="#contact">
                 <Icon className="button-icon" name="calendar" />
-                Book an Inspection
+                Book Your Inspection
               </a>
-              <a className="button button-outline" href="#sample-report">
-                <Icon className="button-icon" name="report" />
-                See Sample Report
+              <a className="button button-outline" href="#our-process">
+                See the process
               </a>
             </div>
 
             <div className="hero-trustline">
               <div className="hero-rating">
-                <Icon className="trust-icon" name="star" />
-                <strong>4.9/5 buyer confidence rating</strong>
+                <Icon className="trust-icon" name="shield" />
+                <span>350+ checkpoints, photo evidence, and fast report delivery.</span>
               </div>
-              <p>
-                Use the report to buy with confidence, negotiate repairs, or walk away before money
-                changes hands.
-              </p>
             </div>
           </div>
 
           <div className="hero-showcase">
-            <div className="hero-panel">
-              <div className="hero-panel-header">
-                <div>
-                  <p className="eyebrow">Sample inspection snapshot</p>
-                  <h2>Decision-ready summary</h2>
+            <HeroSlider slides={heroSlides} />
+          </div>
+        </div>
+      </section>
+
+      <section className="feature-card-section">
+        <div className="container">
+          <div className="section-heading section-heading-sm">
+            <SectionLabel>Core benefits</SectionLabel>
+            <h2>Inspection insights built to keep buyers in control.</h2>
+          </div>
+
+          <div className="feature-card-grid">
+            {heroHighlights.map((item) => (
+              <article className="feature-card" key={item.title}>
+                <div className="feature-card-icon">
+                  <Icon name="check" />
                 </div>
-                <StatusPill status="Excellent" />
-              </div>
-
-              <div className="hero-panel-grid">
-                <ScoreRing label="Overall score" score={heroScore} />
-
-                <div className="report-list-card">
-                  {reportPreviewRows.map((row) => (
-                    <div className="report-list-row" key={row.label}>
-                      <span>{row.label}</span>
-                      <span>{row.score}</span>
-                      <StatusPill status={row.status} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="hero-car-frame">
-              <Image
-                alt="Black luxury sedan representing a professionally inspected vehicle."
-                className="hero-car"
-                height={760}
-                priority
-                src="/assets/hero-car.png"
-                width={1180}
-              />
-            </div>
-
-            <div className="hero-floating-strip">
-              {heroHighlights.map((item) => (
-                <article key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -231,7 +204,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading">
             <SectionLabel>How it works</SectionLabel>
-            <h2>A simple process built for fast and confident buying decisions.</h2>
+            <h2>A Simple Process Built for Fast & Confident Buying Decisions</h2>
             <p>
               The process is straightforward, practical, and designed to give you clarity before a
               payment is made.

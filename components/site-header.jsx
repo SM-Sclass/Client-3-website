@@ -15,6 +15,17 @@ export function SiteHeader({ navigation }) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   function closeMenu() {
     setIsMenuOpen(false);
   }
@@ -52,7 +63,11 @@ export function SiteHeader({ navigation }) {
           </div>
         </div>
 
-        <div className={`mobile-menu${isMenuOpen ? " is-open" : ""}`} id="mobile-menu">
+        <div
+          className={`mobile-menu${isMenuOpen ? " is-open" : ""}`}
+          id="mobile-menu"
+          aria-hidden={!isMenuOpen}
+        >
           <nav className="mobile-nav" aria-label="Mobile primary">
             {navigation.map((item) => (
               <a key={item.href} href={item.href} onClick={closeMenu}>

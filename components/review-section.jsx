@@ -188,11 +188,25 @@ export function ReviewSection({ initialReviews = [] }) {
                 </div>
 
                 <div className="review-photos">
-                  {review.photos.slice(0, 4).map((photo, photoIndex) => (
-                    <div className="review-photo" key={`${photo}-${photoIndex}`}>
-                      <Image alt={`Proof photo ${photoIndex + 1}`} fill src={photo} />
-                    </div>
-                  ))}
+                  {review.photos.slice(0, 4).map((photo, photoIndex) => {
+                    const isRemote = /^https?:\/\//.test(photo);
+                    const isDataUrl = /^data:/i.test(photo);
+
+                    return (
+                      <div className="review-photo" key={`${photo}-${photoIndex}`}>
+                        {isRemote || isDataUrl ? (
+                          <img
+                            alt={`Proof photo ${photoIndex + 1}`}
+                            src={photo}
+                            className="review-photo-image"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <Image alt={`Proof photo ${photoIndex + 1}`} fill src={photo} />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="review-details">
@@ -298,11 +312,25 @@ export function ReviewSection({ initialReviews = [] }) {
 
           {photoPreview.length > 0 ? (
             <div className="review-preview-grid">
-              {photoPreview.map((photo, index) => (
-                <div className="review-preview-item" key={`${photo}-${index}`}>
-                  <Image alt={`Preview ${index + 1}`} fill src={photo} />
-                </div>
-              ))}
+              {photoPreview.map((photo, index) => {
+                const isRemote = /^https?:\/\//.test(photo);
+                const isDataUrl = /^data:/i.test(photo);
+
+                return (
+                  <div className="review-preview-item" key={`${photo}-${index}`}>
+                    {isRemote || isDataUrl ? (
+                      <img
+                        alt={`Preview ${index + 1}`}
+                        src={photo}
+                        className="review-photo-image"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Image alt={`Preview ${index + 1}`} fill src={photo} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           ) : null}
 
