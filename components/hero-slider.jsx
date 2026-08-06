@@ -84,6 +84,7 @@ export function HeroSlider({ slides }) {
           <Image
             alt={`${activeSlide.name} inspection preview`}
             fill
+            loading="eager"
             sizes="(max-width: 720px) 100vw, 600px"
             className="hero-slider-image"
             src={activeSlide.image}

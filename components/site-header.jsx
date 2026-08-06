@@ -47,7 +47,7 @@ export function SiteHeader({ navigation }) {
           <div className="header-actions">
             <a className="button button-solid header-cta" href="#contact">
               <Icon className="button-icon" name="calendar" />
-              Book an Inspection
+              Book Now
             </a>
 
             <button

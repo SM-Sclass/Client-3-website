@@ -1,29 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-
-function sanitizePhotoUrls(value) {
-  return value
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean)
-    .slice(0, 6);
-}
-
-function readFilesAsDataUrls(files) {
-  return Promise.all(
-    files.map(
-      (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(String(reader.result));
-          reader.onerror = () => reject(new Error("Failed to read file."));
-          reader.readAsDataURL(file);
-        })
-    )
-  );
-}
+import { Icon } from "@/components/icon";
 
 function getDisplayDate() {
   return new Date().toLocaleDateString("en-IN", {
@@ -33,36 +12,18 @@ function getDisplayDate() {
   });
 }
 
-export function ReviewSection({ initialReviews = [] }) {
+export function ReviewSection({ reviews: initialReviews }) {
   const [reviews, setReviews] = useState(initialReviews);
+  const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
     name: "",
     rating: "5",
     carModel: "",
-    city: "",
     problem: "",
-    cost: "",
     saved: "",
-    photoUrls: "",
-    photoFiles: [],
-    photoPreviews: []
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const fileInputRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    window.localStorage.removeItem("checkmate-reviews");
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (reviews.length > 0) {
-      window.localStorage.setItem("checkmate-reviews", JSON.stringify(reviews));
-    }
-  }, [reviews]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -73,274 +34,167 @@ export function ReviewSection({ initialReviews = [] }) {
 
   const handleRatingSelect = (value) => {
     setForm((prev) => ({ ...prev, rating: String(value) }));
-    setError("");
-    setMessage("");
-  };
-
-  const handleFileChange = async (event) => {
-    const files = event.target.files ? Array.from(event.target.files).slice(0, 6) : [];
-    if (files.length === 0) {
-      setForm((prev) => ({ ...prev, photoFiles: [], photoPreviews: [] }));
-      return;
-    }
-
-    try {
-      const previews = await readFilesAsDataUrls(files);
-      setForm((prev) => ({ ...prev, photoFiles: files, photoPreviews: previews }));
-      setError("");
-      setMessage("");
-    } catch {
-      setError("Unable to read one or more selected images.");
-    }
-  };
-
-  const handleDeleteReview = (indexToDelete) => {
-    setReviews((prev) => prev.filter((_, index) => index !== indexToDelete));
-    setError("");
-    setMessage("Review deleted successfully.");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!form.name.trim() || !form.carModel.trim() || !form.problem.trim() || !form.cost.trim() || !form.saved.trim()) {
-      setError("Please complete every required field before submitting the review.");
+    if (!form.name.trim() || !form.carModel.trim() || !form.problem.trim() || !form.saved.trim()) {
+      setError("Please complete all fields before submitting.");
       return;
     }
 
-    const photos = sanitizePhotoUrls(form.photoUrls);
-    const reviewPhotos = [...photos, ...form.photoPreviews].slice(0, 6);
-    const review = {
+    const newReview = {
       name: form.name.trim(),
       rating: Number(form.rating),
       carModel: form.carModel.trim(),
-      city: form.city.trim(),
       problem: form.problem.trim(),
-      cost: form.cost.trim(),
       saved: form.saved.trim(),
-      photos: reviewPhotos,
+      photos: [], // Simplified for the clean form
       date: getDisplayDate()
     };
 
-    setReviews((prev) => [review, ...prev]);
+    setReviews((prev) => [newReview, ...prev]);
     setForm({
       name: "",
       rating: "5",
       carModel: "",
-      city: "",
       problem: "",
-      cost: "",
       saved: "",
-      photoUrls: "",
-      photoFiles: [],
-      photoPreviews: []
     });
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
     setError("");
-    setMessage("Review submitted successfully. It is now visible to buyers.");
+    setMessage("Review submitted successfully. Thank you!");
+    setTimeout(() => {
+      setShowForm(false);
+      setMessage("");
+    }, 2500);
   };
 
-  const photoPreview = [...sanitizePhotoUrls(form.photoUrls), ...form.photoPreviews].slice(0, 4);
+  if (!reviews || reviews.length === 0) return null;
 
   return (
     <div className="review-section">
       <div className="review-summary">
-        <div className="review-summary-card">
-          <strong>{reviews.length}+ buyer stories</strong>
-          <span>Real inspection feedback from customers who used the report before handover.</span>
+        <div className="review-summary-card card">
+          <strong>150+ verified buyers</strong>
+          <span>Real inspection feedback from customers who used the report before handover to avoid hidden costs.</span>
         </div>
       </div>
 
-      <div className="review-grid">
-        <div className="review-cards">
-          {reviews.length === 0 ? (
-            <div className="review-empty-state">
-              <h3>No reviews yet</h3>
-              <p>Be the first customer to share a real inspection outcome and help other buyers.</p>
-            </div>
-          ) : (
-            reviews.map((review, index) => (
-              <article className="review-card" key={`${review.name}-${index}`}>
-                <div className="review-card-head">
-                  <div>
-                    <div className="review-title-row">
-                      <h3>{review.name}</h3>
-                      <span className="review-badge">Verified buyer</span>
-                    </div>
-                    <p className="review-meta">
-                      {review.carModel}
-                      {review.city ? ` · ${review.city}` : ""}
-                    </p>
-                  </div>
-                  <span className="review-rating" aria-label={`${review.rating} out of 5 stars`}>
-                    {review.rating} ★
-                  </span>
+      <div className="review-grid-clean">
+        {reviews.map((review, index) => (
+          <article className="review-card card" key={`${review.name}-${index}`}>
+            <div className="review-card-head">
+              <div>
+                <div className="review-title-row">
+                  <h3>{review.name}</h3>
+                  <span className="review-badge">Verified buyer</span>
                 </div>
+                <p className="review-meta">
+                  {review.carModel} {review.city ? ` · ${review.city}` : ""}
+                </p>
+              </div>
+              <span className="review-rating" aria-label={`${review.rating} out of 5 stars`}>
+                {review.rating} ★
+              </span>
+            </div>
 
-                <div className="review-stars" aria-label={`${review.rating} out of 5 stars`}>
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <span key={index} className={index < review.rating ? "star filled" : "star"}>
-                      ★
-                    </span>
+            {review.photos && review.photos.length > 0 && (
+              <div className="review-photos">
+                {review.photos.slice(0, 3).map((photo, photoIndex) => (
+                  <div className="review-photo" key={`${photo}-${photoIndex}`}>
+                    <Image alt={`Proof photo ${photoIndex + 1}`} fill src={photo} className="review-photo-image" />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="review-details">
+              <div className="review-highlight problem">
+                <Icon name="alert" className="review-highlight-icon" />
+                <div>
+                  <strong>Problem Found</strong>
+                  <p>{review.problem}</p>
+                </div>
+              </div>
+              <div className="review-highlight saved">
+                <Icon name="check" className="review-highlight-icon" />
+                <div>
+                  <strong>Customer Saved</strong>
+                  <p>{review.saved}</p>
+                </div>
+              </div>
+              <p className="review-date">{review.date}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Write a Review Section */}
+      <div className="review-action-area" style={{ marginTop: '56px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '32px 0', borderTop: '1px solid rgba(15,31,19,0.08)' }}>
+        {!showForm ? (
+          <div style={{ textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginBottom: '16px' }}>Have you used our inspection service?</h3>
+            <button className="button button-solid" onClick={() => setShowForm(true)} style={{ padding: '14px 32px', fontSize: '1.05rem', boxShadow: '0 8px 20px rgba(26,61,32,0.15)' }}>
+              <Icon name="user" className="button-icon" />
+              Write a Review
+            </button>
+          </div>
+        ) : (
+          <form className="review-form card" onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '500px', padding: '32px' }}>
+            <div className="review-form-header" style={{ marginBottom: '24px', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginBottom: '8px' }}>Share Your Experience</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Help other buyers by sharing what we found during your inspection.</p>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.9rem', fontWeight: '600' }}>
+                Name
+                <input name="name" type="text" value={form.name} onChange={handleChange} required style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(15,31,19,0.1)' }} />
+              </label>
+
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.9rem', fontWeight: '600' }}>
+                Car Model
+                <input name="carModel" type="text" value={form.carModel} onChange={handleChange} required placeholder="e.g., Hyundai Creta" style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(15,31,19,0.1)' }} />
+              </label>
+
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.9rem', fontWeight: '600' }}>
+                Problem Found
+                <textarea name="problem" value={form.problem} onChange={handleChange} required rows={2} placeholder="What issue did the inspector catch?" style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(15,31,19,0.1)', fontFamily: 'inherit' }} />
+              </label>
+
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.9rem', fontWeight: '600' }}>
+                Customer Saved
+                <input name="saved" type="text" value={form.saved} onChange={handleChange} required placeholder="e.g., Dealer fixed it, Saved ₹10,000" style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(15,31,19,0.1)' }} />
+              </label>
+
+              <div className="review-rating-picker" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '8px' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: '600' }}>Rating</span>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      className={Number(form.rating) === value ? "rating-pill active" : "rating-pill"}
+                      onClick={() => handleRatingSelect(value)}
+                      type="button"
+                      style={{ padding: '6px 12px', borderRadius: '20px', border: '1px solid rgba(15,31,19,0.1)', background: Number(form.rating) === value ? 'var(--green-700)' : 'transparent', color: Number(form.rating) === value ? '#fff' : 'inherit', cursor: 'pointer' }}
+                    >
+                      {value}★
+                    </button>
                   ))}
                 </div>
-
-                <div className="review-photos">
-                  {review.photos.slice(0, 4).map((photo, photoIndex) => {
-                    const isRemote = /^https?:\/\//.test(photo);
-                    const isDataUrl = /^data:/i.test(photo);
-
-                    return (
-                      <div className="review-photo" key={`${photo}-${photoIndex}`}>
-                        {isRemote || isDataUrl ? (
-                          <img
-                            alt={`Proof photo ${photoIndex + 1}`}
-                            src={photo}
-                            className="review-photo-image"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <Image alt={`Proof photo ${photoIndex + 1}`} fill src={photo} />
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="review-details">
-                  <p className="review-problem">
-                    <strong>Problem found:</strong> {review.problem}
-                  </p>
-                  <p className="review-cost">
-                    <strong>Estimated repair cost:</strong> {review.cost}
-                  </p>
-                  <p className="review-saved">
-                    <strong>Customer saved from future issues:</strong> {review.saved}
-                  </p>
-                  <p className="review-date">{review.date}</p>
-                  <button
-                    className="button button-outline review-delete"
-                    type="button"
-                    onClick={() => handleDeleteReview(index)}
-                  >
-                    Delete review
-                  </button>
-                </div>
-              </article>
-            ))
-          )}
-        </div>
-
-        <form className="review-form" onSubmit={handleSubmit}>
-          <div className="review-form-header">
-            <h3>Add a review</h3>
-            <p>Share the inspection details, the problem found, and how the buyer saved money or risk.</p>
-          </div>
-
-          <label>
-            Name
-            <input name="name" type="text" value={form.name} onChange={handleChange} required />
-          </label>
-
-          <label>
-            Car model
-            <input name="carModel" type="text" value={form.carModel} onChange={handleChange} required />
-          </label>
-
-          <label>
-            Dealer city (optional)
-            <input name="city" type="text" value={form.city} onChange={handleChange} />
-          </label>
-
-          <label>
-            Problem found
-            <textarea name="problem" value={form.problem} onChange={handleChange} required rows={3} />
-          </label>
-
-          <label>
-            Estimated repair cost
-            <input name="cost" type="text" value={form.cost} onChange={handleChange} required />
-          </label>
-
-          <label>
-            Customer saved from future issues
-            <textarea name="saved" value={form.saved} onChange={handleChange} required rows={2} />
-          </label>
-
-          <label>
-            Proof image URLs (optional)
-            <input
-              name="photoUrls"
-              type="text"
-              value={form.photoUrls}
-              onChange={handleChange}
-              placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
-            />
-          </label>
-
-          <label>
-            Upload review photos (optional)
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleFileChange}
-            />
-          </label>
-
-          <div className="review-rating-picker">
-            <span>Rating</span>
-            <div className="review-rating-options">
-              {Array.from({ length: 5 }, (_, index) => {
-                const value = index + 1;
-                return (
-                  <button
-                    key={value}
-                    className={Number(form.rating) === value ? "rating-pill active" : "rating-pill"}
-                    onClick={() => handleRatingSelect(value)}
-                    type="button"
-                  >
-                    {value}★
-                  </button>
-                );
-              })}
+              </div>
             </div>
-          </div>
 
-          {photoPreview.length > 0 ? (
-            <div className="review-preview-grid">
-              {photoPreview.map((photo, index) => {
-                const isRemote = /^https?:\/\//.test(photo);
-                const isDataUrl = /^data:/i.test(photo);
+            {error && <p style={{ color: '#dc2626', fontSize: '0.9rem', marginTop: '16px' }}>{error}</p>}
+            {message && <p style={{ color: '#16a34a', fontSize: '0.9rem', marginTop: '16px' }}>{message}</p>}
 
-                return (
-                  <div className="review-preview-item" key={`${photo}-${index}`}>
-                    {isRemote || isDataUrl ? (
-                      <img
-                        alt={`Preview ${index + 1}`}
-                        src={photo}
-                        className="review-photo-image"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <Image alt={`Preview ${index + 1}`} fill src={photo} />
-                    )}
-                  </div>
-                );
-              })}
+            <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+              <button className="button button-solid" type="submit" style={{ flex: 1 }}>Submit Review</button>
+              <button className="button button-outline" type="button" onClick={() => setShowForm(false)}>Cancel</button>
             </div>
-          ) : null}
-
-          {error ? <p className="review-message review-message-error">{error}</p> : null}
-          {message ? <p className="review-message">{message}</p> : null}
-
-          <button className="button button-solid" type="submit">
-            Submit review
-          </button>
-        </form>
+          </form>
+        )}
       </div>
     </div>
   );

@@ -1,15 +1,16 @@
-import { Icon } from "@/components/icon";
+import Image from "next/image";
 
 export function BrandMark() {
   return (
-    <a className="brand-mark" href="#top" aria-label="CheckMate PDI Expert home">
-      <span className="brand-badge">
-        <Icon name="shield" className="brand-badge-icon" />
-      </span>
-      <span className="brand-copy">
-        <strong>CheckMate</strong>
-        <span>PDI Expert</span>
-      </span>
+    <a className="brand-mark" href="#top" aria-label="CheckMate PDI Exxpert home">
+      <Image 
+        src="/assets/logo.png" 
+        alt="CheckMate PDI Exxpert Logo" 
+        width={240} 
+        height={106} 
+        className="brand-logo-img"
+        priority
+      />
     </a>
   );
 }

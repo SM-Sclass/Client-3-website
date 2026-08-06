@@ -1,33 +1,24 @@
-import localFont from "next/font/local";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 
-const headingFont = localFont({
-  src: "./fonts/bahnschrift.ttf",
+const headingFont = Sora({
+  subsets: ["latin"],
   variable: "--font-heading",
+  weight: ["600", "700"],
   display: "swap"
 });
 
-const bodyFont = localFont({
-  src: [
-    {
-      path: "./fonts/corbel.ttf",
-      weight: "400",
-      style: "normal"
-    },
-    {
-      path: "./fonts/corbelb.ttf",
-      weight: "700",
-      style: "normal"
-    }
-  ],
+const bodyFont = Inter({
+  subsets: ["latin"],
   variable: "--font-body",
+  weight: ["400", "500", "600"],
   display: "swap"
 });
 
 export const metadata = {
   title: "CheckMate PDI Expert | Premium Car Inspection Reports",
   description:
-    "Independent pre-purchase and pre-delivery car inspection with photo evidence, structured reports, and same-day buyer clarity."
+    "Independent pre-purchase and pre-delivery car inspection with photo evidence, structured reports, and report delivery within 15 minutes."
 };
 
 export default function RootLayout({ children }) {

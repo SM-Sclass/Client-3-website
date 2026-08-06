@@ -132,7 +132,7 @@ const iconMap = {
   )
 };
 
-export function Icon({ name, className = "", strokeWidth = 1.8 }) {
+export function Icon({ name, className = "", strokeWidth = 1.8, ...props }) {
   const glyph = iconMap[name];
 
   if (!glyph) {
@@ -149,6 +149,7 @@ export function Icon({ name, className = "", strokeWidth = 1.8 }) {
       strokeLinejoin="round"
       strokeWidth={strokeWidth}
       viewBox="0 0 24 24"
+      {...props}
     >
       {glyph}
     </svg>

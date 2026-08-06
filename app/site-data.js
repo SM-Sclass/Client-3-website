@@ -19,34 +19,34 @@ export const heroHighlights = [
   },
   {
     title: "Decision-ready delivery",
-    text: "A polished report delivered fast so you can negotiate or accept with confidence."
+    text: "A polished report delivered within 15 minutes so you can negotiate or accept with confidence."
   }
 ];
 
 export const heroSlides = [
   {
-    name: "Defender",
-    title: "Premium SUV inspection before delivery.",
-    text: "Thorough checks for body, engine, and finish to ensure a premium handover.",
-    image: "/assets/hero-car.png"
-  },
-  {
-    name: "Maruti Suzuki",
-    title: "Affordable and trusted inspection for every family car.",
-    text: "A careful inspection for family vehicles with clear photo-backed findings.",
-    image: "/assets/inspection-proof-01.jpeg"
-  },
-  {
-    name: "Mahindra",
-    title: "Complete 360° inspection for SUVs and commercial vehicles.",
-    text: "Robust checks for larger vehicles, from chassis to cabin to powertrain.",
+    name: "LAND ROVER DEFENDER",
+    title: "Complete 360Â° Inspection for Premium SUVs.",
+    text: "Thorough checks on body panels, chassis, drivetrain, and luxury features â€” every detail documented with photo evidence.",
     image: "/assets/inspection-proof-02.jpeg"
   },
   {
-    name: "Toyota",
-    title: "Professional inspection with detailed photo-backed reports.",
-    text: "Fast, transparent inspection reports that help you decide with confidence.",
-    image: "/assets/inspection-proof-03.jpeg"
+    name: "MAHINDRA XUV",
+    title: "Real Car. Real Inspection. Real Proof.",
+    text: "Every panel, paint layer, and mechanical detail is checked and documented with photo evidence â€” so you know exactly what you're buying.",
+    image: "/assets/inspection-proof-06.jpeg"
+  },
+  {
+    name: "LAND ROVER DEFENDER",
+    title: "Pre-Delivery Inspection Before You Sign.",
+    text: "Focused paint thickness checks, suspension review, and full exterior verification â€” everything you need before handover.",
+    image: "/assets/inspection-proof-04.jpeg"
+  },
+  {
+    name: "TOYOTA URBAN CRUISER",
+    title: "Every Car Type Inspected with Equal Precision.",
+    text: "From everyday hatchbacks to premium crossovers â€” every model gets the same thorough 350+ point checklist.",
+    image: "/assets/inspection-proof-10.jpeg"
   }
 ];
 
@@ -79,19 +79,19 @@ export const trustPillars = [
 export const processSteps = [
   {
     title: "Share Vehicle Details",
-    text: "Send your car details, showroom location, and preferred inspection slot."
+    text: "Send us the car details, location, and your preferred inspection slot."
   },
   {
     title: "Inspector Visit",
-    text: "A certified inspector performs a structured 350+ point check at the location."
+    text: "A certified inspector visits the vehicle and performs the full 350+ point check."
   },
   {
     title: "Photo Report",
-    text: "Receive a clean, photo-backed inspection report within minutes."
+    text: "Every finding is documented with clear photo evidence."
   },
   {
     title: "Buy with Confidence",
-    text: "Decide with clarity using unbiased findings and clear issue evidence."
+    text: "Get your decision-ready report within 15 minutes and move forward with clarity."
   }
 ];
 
@@ -295,7 +295,7 @@ export const reportMeta = [
 
 export const sampleVehicle = {
   name: "Hyundai Creta",
-  subtitle: "2020 SX(O) · Diesel · Automatic"
+  subtitle: "2020 SX(O) Â· Diesel Â· Automatic"
 };
 
 export const reportRemark =
@@ -307,7 +307,7 @@ export const professionalPoints = [
     text: "Inspectors know where hidden repair history and wear patterns usually show up first."
   },
   {
-    title: "Same-day digital delivery",
+    title: "Digital report in minutes",
     text: "Reports are shared quickly so your buying decision does not lose momentum."
   },
   {
@@ -334,7 +334,7 @@ export const reviewItems = [
     carModel: "Hyundai Creta SX(O)",
     city: "Pune",
     problem: "Hidden front bumper leak and engine bay fluid trail discovered before delivery.",
-    cost: "₹18,000",
+    cost: "â‚¹18,000",
     saved: "Avoided paying for a car with a developing coolant leak and possible head gasket issue.",
     photos: [
       "/assets/inspection-proof-01.jpeg",
@@ -401,20 +401,43 @@ export const ctaChecklist = [
   "84-point inspection flow",
   "Photo and VIN evidence",
   "Condition grading with remarks",
-  "Digital report shared the same day"
+  "Digital report delivered within 15 minutes"
 ];
 
 export const contactItems = [
-  { label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210", icon: "phone" },
+  {
+    label: "Mobile & WhatsApp",
+    value: "+91 70399 35536",
+    href: "https://wa.me/917039935536",
+    icon: "phone"
+  },
   {
     label: "Email",
-    value: "hello@checkmatepdi.com",
-    href: "mailto:hello@checkmatepdi.com",
+    value: "checkmate.pdiexxpert@gmail.com",
+    href: "mailto:checkmate.pdiexxpert@gmail.com",
     icon: "mail"
   },
-  { label: "Service area", value: "Pune and nearby locations", icon: "city" },
-  { label: "Availability", value: "Same-day slots available on request", icon: "clock" }
+  {
+    label: "Website",
+    value: "checkmatepdi.com",
+    href: "https://checkmatepdi.com",
+    icon: "search"
+  },
+  {
+    label: "Instagram",
+    value: "@Checkmate.pdiexxpert",
+    href: "https://www.instagram.com/Checkmate.pdiexxpert",
+    icon: "camera"
+  },
+  {
+    label: "Facebook",
+    value: "CheckMate PDI Exxpert",
+    href: "https://www.facebook.com/profile.php?id=61573372995325",
+    icon: "user"
+  }
 ];
+
+export const brandTagline = "à¤—à¤¾à¤¡à¤¼à¥€ à¤²à¥‡à¤¨à¥‡ à¤¸à¥‡ à¤ªà¤¹à¤²à¥‡, CheckMate à¤œà¤¼à¤°à¥‚à¤° à¤•à¤°à¥‡à¤‚à¥¤";
 
 export const serviceNotes = [
   "Ideal before token payment or final handover.",
@@ -424,15 +447,30 @@ export const serviceNotes = [
 
 export const contactActions = [
   {
-    label: "Request a callback",
-    href: "mailto:hello@checkmatepdi.com",
-    icon: "mail",
+    label: "Message on WhatsApp",
+    href: "https://wa.me/917039935536",
+    icon: "chat",
     variant: "solid"
   },
   {
-    label: "WhatsApp the team",
-    href: "https://wa.me/919876543210",
-    icon: "chat",
+    label: "Visit Website",
+    href: "https://checkmatepdi.com",
+    icon: "search",
     variant: "outline"
   }
 ];
+
+export const proofGallery = [
+  { image: '/assets/proofs/proof-1.jpeg', title: 'Engine Bay Inspection', desc: 'Engine cover lock is broken.' },
+  { image: '/assets/proofs/proof-3.jpeg', title: 'Exterior Verification', desc: 'Checking panel gaps and paint thickness.' },
+  { image: '/assets/proofs/proof-15.jpeg', title: 'Hood Inspection', desc: 'The hood is open and partially repainted.' },
+  { image: '/assets/proofs/proof-10.jpeg', title: 'Paint Coating Gauge', desc: 'Detecting repaints or accidental damage.' },
+  { image: '/assets/proofs/proof-8.jpeg', title: 'Underbody Check', desc: 'Checking for rust, leaks, or chassis damage.' }
+];
+
+export const verifiedReviews = [
+  { name: 'Rahul S.', carModel: 'Land Rover Defender', city: 'Mumbai', rating: 5, date: 'May 2026', problem: 'Engine lock broken.', saved: '¹ 35,000 negotiated off price', photos: ['/assets/proofs/proof-4.jpeg', '/assets/proofs/proof-1.jpeg'] },
+  { name: 'Vikram M.', carModel: 'Honda Elevate', city: 'Pune', rating: 5, date: 'September 2026', problem: 'Repair and repaint work found on a new car.', saved: 'Fixed the issue before delivery', photos: ['/assets/proofs/proof-7.jpeg'] },
+  { name: 'Neha K.', carModel: 'Urban Cruiser Hyryder', city: 'Navi Mumbai', rating: 5, date: 'April 2026', problem: 'Trunk was replaced and repainted.', saved: 'Replaced under warranty before delivery.', photos: ['/assets/proofs/proof-12.jpeg'] }
+];
+
