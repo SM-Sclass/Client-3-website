@@ -469,8 +469,41 @@ export const proofGallery = [
 ];
 
 export const verifiedReviews = [
-  { name: 'Rahul S.', carModel: 'Land Rover Defender', city: 'Mumbai', rating: 5, date: 'May 2026', problem: 'Engine lock broken.', saved: '¹ 35,000 negotiated off price', photos: ['/assets/proofs/proof-4.jpeg', '/assets/proofs/proof-1.jpeg'] },
-  { name: 'Vikram M.', carModel: 'Honda Elevate', city: 'Pune', rating: 5, date: 'September 2026', problem: 'Repair and repaint work found on a new car.', saved: 'Fixed the issue before delivery', photos: ['/assets/proofs/proof-7.jpeg'] },
-  { name: 'Neha K.', carModel: 'Urban Cruiser Hyryder', city: 'Navi Mumbai', rating: 5, date: 'April 2026', problem: 'Trunk was replaced and repainted.', saved: 'Replaced under warranty before delivery.', photos: ['/assets/proofs/proof-12.jpeg'] }
+  { name: 'Rahul S.', carModel: 'Land Rover Defender', city: 'Mumbai', rating: 5, date: 'May 2026', problem: 'Engine lock broken.', saved: 'Fixed the issue before delivery', photos: ['/assets/proofs/proof-4.jpeg', '/assets/proofs/proof-1.jpeg'] },
+  { name: 'Vikram M.', carModel: 'Honda Elevate', city: 'Pune', rating: 5, date: 'September 2026', problem: 'Repair and repaint work found on a new car.', saved: 'Rejected damaged unit & got a fresh car', photos: ['/assets/proofs/proof-7.jpeg'] },
+  { name: 'Neha K.', carModel: 'Urban Cruiser Hyryder', city: 'Navi Mumbai', rating: 5, date: 'April 2026', problem: 'Trunk was replaced and repainted.', saved: 'Received compensation before delivery', photos: ['/assets/proofs/proof-12.jpeg'] }
 ];
+
+export const corridorPages = [
+  { title: "South Mumbai", href: "/car-inspection-south-mumbai", desc: "Churchgate to Dadar & Mahim" },
+  { title: "Bandra to Andheri", href: "/car-inspection-bandra-andheri", desc: "Bandra, Khar, Santacruz, Vile Parle, Andheri" },
+  { title: "Goregaon to Borivali", href: "/car-inspection-goregaon-borivali", desc: "Goregaon, Malad, Kandivali, Borivali" },
+  { title: "Mira Road to Virar", href: "/car-inspection-mira-virar", desc: "Mira Road, Bhayandar, Vasai, Virar" },
+  { title: "Thane Corridor", href: "/car-inspection-thane", desc: "Thane West, Ghodbunder Rd, Kalwa, Mumbra" },
+  { title: "Kalyan & Dombivli", href: "/car-inspection-kalyan-dombivli", desc: "Kalyan, Dombivli, Thakurli, Diva" }
+];
+
+export const faqItems = [
+  {
+    q: "What is a Car PDI (Pre-Delivery Inspection)?",
+    a: "A Pre-Delivery Inspection (PDI) is a comprehensive 350+ point check performed on a new or used car before you make final payment or take delivery. Our certified inspectors verify panel alignment, paint thickness, engine health, electricals, odometer readings, and detect hidden transit or accident damage."
+  },
+  {
+    q: "How much does a CheckMate PDI cost?",
+    a: "Our independent car PDI inspections start at ₹999. Every package includes a full 350+ point evaluation, high-resolution photo evidence of any issues found, and a decision-ready digital report delivered within 15 minutes of completion."
+  },
+  {
+    q: "Which areas in Mumbai and Thane do you cover?",
+    a: "We cover the entire Mumbai Western Railway corridor (Churchgate to Virar) and the Thane–Kalyan belt, including Thane, Kalwa, Mumbra, Diva, Dombivli, Thakurli, and Kalyan."
+  },
+  {
+    q: "How long does the inspection take and when do I get the report?",
+    a: "On-site inspection takes approximately 45 to 60 minutes. Your complete digital report with photo evidence is sent via WhatsApp and Email within 15 minutes after inspection."
+  },
+  {
+    q: "What points are checked during the PDI?",
+    a: "We check 11 key categories: Buyer Details, Vehicle Identity (VIN & Odometer), Exterior Paint & Body Alignment, Glass & Windshields, Tyre Tread & Manufacturing Dates, Interior Cabin & Controls, Engine Bay Fluids & Battery, Electrical System, Underbody Check, Photo Evidence, and Final Condition Rating."
+  }
+];
+
 

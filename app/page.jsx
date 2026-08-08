@@ -29,7 +29,9 @@ import {
   trustPillars,
   heroSlides,
   proofGallery,
-  verifiedReviews
+  verifiedReviews,
+  corridorPages,
+  faqItems
 } from "@/app/site-data";
 
 const heroScore = 94;
@@ -71,6 +73,9 @@ export default function HomePage() {
             <p className="hero-text hero-text-extended">
               Get a polished, decision-ready report within 15 minutes — so you can buy with confidence and avoid unexpected issues after handover.
             </p>
+            <p className="hero-text hero-text-extended" style={{ fontSize: '0.92rem', color: 'var(--text-soft)', marginTop: '8px' }}>
+              Serving car buyers across the Mumbai western line and Thane–Kalyan belt — from Churchgate to Virar, and Thane to Kalyan.
+            </p>
 
             <div className="hero-badge-grid">
               <div className="hero-badge-card">
@@ -84,8 +89,8 @@ export default function HomePage() {
             </div>
 
             <div className="hero-actions">
-              <a className="button button-solid shimmer-effect" href="#contact">
-                <Icon className="button-icon" name="calendar" />
+              <a className="button button-solid shimmer-effect" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer">
+                <Icon className="button-icon" name="whatsapp" />
                 Book Your Inspection
               </a>
               <a className="button button-outline" href="#our-process">
@@ -430,6 +435,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── FAQ SECTION ── */}
+      <section className="section-space" id="faq">
+        <div className="container">
+          <div className="section-heading">
+            <SectionLabel>Frequently Asked Questions</SectionLabel>
+            <h2>Everything You Need to Know About Car PDI</h2>
+            <p>Clear, direct answers about our pre-delivery and pre-purchase inspection services.</p>
+          </div>
+          <div className="faq-grid" style={{ display: 'grid', gap: '16px', maxWidth: '840px', margin: '0 auto' }}>
+            {faqItems.map((item, idx) => (
+              <details key={idx} className="faq-item" style={{ background: 'var(--surface-card)', padding: '20px 24px', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
+                <summary style={{ fontWeight: '700', cursor: 'pointer', fontSize: '1.05rem', color: 'var(--text-main)' }}>
+                  {item.q}
+                </summary>
+                <p style={{ marginTop: '12px', color: 'var(--text-body)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-brand-col">
@@ -445,6 +473,15 @@ export default function HomePage() {
               <li><a href="#our-process">How it Works</a></li>
               <li><a href="#inspection-areas">Coverage</a></li>
               <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div className="footer-links-col">
+            <h4>Corridor Coverage</h4>
+            <ul>
+              {corridorPages.map((c) => (
+                <li key={c.href}><a href={c.href}>{c.title}</a></li>
+              ))}
             </ul>
           </div>
           <div className="footer-links-col">
@@ -452,13 +489,6 @@ export default function HomePage() {
             <ul>
               <li><a href="https://wa.me/917039935536" target="_blank" rel="noopener noreferrer">+91 70399 35536</a></li>
               <li><a href="mailto:checkmate.pdiexxpert@gmail.com">checkmate.pdiexxpert@gmail.com</a></li>
-            </ul>
-          </div>
-          <div className="footer-links-col">
-            <h4>Follow Us</h4>
-            <ul>
-              <li><a href="https://www.instagram.com/Checkmate.pdiexxpert" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="https://www.facebook.com/profile.php?id=61573372995325" target="_blank" rel="noopener noreferrer">Facebook</a></li>
             </ul>
           </div>
         </div>

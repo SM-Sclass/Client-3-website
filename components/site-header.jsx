@@ -45,8 +45,8 @@ export function SiteHeader({ navigation }) {
           </nav>
 
           <div className="header-actions">
-            <a className="button button-solid header-cta" href="#contact">
-              <Icon className="button-icon" name="calendar" />
+            <a className="button button-solid header-cta" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer">
+              <Icon className="button-icon" name="whatsapp" />
               Book Now
             </a>
 
@@ -74,8 +74,8 @@ export function SiteHeader({ navigation }) {
                 {item.label}
               </a>
             ))}
-            <a className="button button-solid mobile-menu-cta" href="#contact" onClick={closeMenu}>
-              <Icon className="button-icon" name="calendar" />
+            <a className="button button-solid mobile-menu-cta" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+              <Icon className="button-icon" name="whatsapp" />
               Book an Inspection
             </a>
           </nav>
