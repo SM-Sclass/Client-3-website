@@ -76,7 +76,7 @@ export function ReviewSection({ reviews: initialReviews }) {
     <div className="review-section">
       <div className="review-summary">
         <div className="review-summary-card card">
-          <strong>150+ verified buyers</strong>
+          <strong>Verified buyer reviews</strong>
           <span>Real inspection feedback from customers who used the report before handover to avoid hidden costs.</span>
         </div>
       </div>

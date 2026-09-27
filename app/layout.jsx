@@ -1,6 +1,20 @@
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 
+import { JsonLd } from "@/components/json-ld";
+import { serviceFacts, siteConfig } from "@/app/data/business";
+import { serviceAreaSummary } from "@/app/data/locations";
+import { faqItems, processSteps } from "@/app/site-data";
+import {
+  faqSchema,
+  graph,
+  howToSchema,
+  llmsTxtSchema,
+  organizationSchema,
+  serviceSchema,
+  websiteSchema
+} from "@/app/data/schema";
+
 const headingFont = Sora({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -15,178 +29,113 @@ const bodyFont = Inter({
   display: "swap"
 });
 
+const homeDescription = `Independent on-site car PDI and pre-purchase inspection in ${serviceAreaSummary.count} areas across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. ${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections, photo evidence for every finding, report in ${serviceFacts.reportDeliveryMinutes} minutes. From ${serviceFacts.priceFromLabel}, no travel charge.`;
+
 export const metadata = {
-  metadataBase: new URL("https://checkmatepdi.com"),
-  title: "Car PDI Inspection Thane, Mumbai | Pre-Delivery & Pre-Purchase Checks from ₹999 | CheckMate PDI",
-  description:
-    "Independent car PDI & pre-purchase inspection across Mumbai's western line and Thane–Kalyan belt. 350+ point checklist, photo evidence, report in 15 min. Starting ₹999.",
-  keywords: [
-    "Car PDI Inspection Mumbai",
-    "Car PDI Thane",
-    "Pre delivery inspection car Mumbai",
-    "Used car inspection Mumbai",
-    "PDI inspector Thane",
-    "CheckMate PDI Exxpert",
-    "Pre purchase car inspection Thane Kalyan"
-  ],
-  alternates: {
-    canonical: "https://checkmatepdi.com"
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `Car PDI Inspection Mumbai, Palghar & Navi Mumbai | CheckMate PDI | From ${serviceFacts.priceFromLabel}`,
+    template: "%s | CheckMate PDI"
   },
+  description: homeDescription,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  keywords: [
+    "car PDI inspection Mumbai",
+    "car inspection Palghar",
+    "car inspection Navi Mumbai",
+    "pre-delivery inspection Mumbai",
+    "used car inspection Mumbai",
+    "pre-purchase car inspection Thane",
+    "car PDI Virar",
+    "car PDI Thane",
+    "checkmatepdi"
+  ],
+  category: "Automotive",
+  alternates: {
+    canonical: siteConfig.url,
+    types: {
+      "text/plain": "/llms.txt"
+    }
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    },
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1
+  },
+  formatDetection: { telephone: true, email: true, address: false },
   openGraph: {
-    title: "Car PDI Inspection Thane, Mumbai | CheckMate PDI",
-    description: "Independent 350+ point car PDI & pre-purchase inspection across Mumbai and Thane. Photo evidence & 15-min digital report. From ₹999.",
-    url: "https://checkmatepdi.com",
-    siteName: "CheckMate PDI Exxpert",
+    title: `Car PDI Inspection in Mumbai, Palghar & Navi Mumbai | CheckMate PDI`,
+    description: homeDescription,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
         url: "/Checkmatepdilogo.png",
         width: 800,
         height: 600,
-        alt: "CheckMate PDI Exxpert Logo"
+        alt: "CheckMate PDI Exxpert car inspection"
       }
     ],
-    locale: "en_IN",
+    locale: siteConfig.locale,
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Car PDI Inspection Thane, Mumbai | CheckMate PDI",
-    description: "Independent 350+ point car PDI & pre-purchase inspection across Mumbai and Thane.",
+    title: `Car PDI Inspection Mumbai | CheckMate PDI | From ${serviceFacts.priceFromLabel}`,
+    description: homeDescription,
     images: ["/Checkmatepdilogo.png"]
   }
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "AutomotiveBusiness",
-      "@id": "https://checkmatepdi.com/#organization",
-      "name": "CheckMate PDI Exxpert",
-      "url": "https://checkmatepdi.com",
-      "logo": "https://checkmatepdi.com/Checkmatepdilogo.png",
-      "telephone": "+917039935536",
-      "email": "checkmate.pdiexxpert@gmail.com",
-      "priceRange": "₹999 - ₹4999",
-      "description": "Independent car PDI & pre-purchase inspection service across Mumbai's western line and Thane–Kalyan belt. 350+ point checklist, photo evidence, report delivered in 15 min.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Thane",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      },
-      "areaServed": [
-        "Thane", "Kalwa", "Mumbra", "Kalyan", "Dombivli", "Diva", "Thakurli",
-        "Churchgate", "Marine Lines", "Charni Road", "Grant Road", "Mumbai Central",
-        "Mahalaxmi", "Lower Parel", "Prabhadevi", "Dadar", "Mahim", "Bandra",
-        "Khar", "Santacruz", "Vile Parle", "Andheri", "Jogeshwari", "Goregaon",
-        "Malad", "Kandivali", "Borivali", "Dahisar", "Mira Road", "Bhayandar",
-        "Naigaon", "Vasai Road", "Nallasopara", "Virar"
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "3"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Rahul S." },
-          "datePublished": "2026-05-15",
-          "reviewBody": "Engine lock broken discovered during inspection. Fixed the issue before delivery.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Vikram M." },
-          "datePublished": "2026-09-10",
-          "reviewBody": "Repair and repaint work found on a new car. Customer rejected damaged unit and took delivery of a fresh car.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Neha K." },
-          "datePublished": "2026-04-20",
-          "reviewBody": "Trunk was replaced and repainted. Received compensation before delivery.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        }
-      ]
-    },
-    {
-      "@type": "Service",
-      "@id": "https://checkmatepdi.com/#pdi-service",
-      "name": "Pre-Delivery Car Inspection (PDI)",
-      "provider": { "@id": "https://checkmatepdi.com/#organization" },
-      "areaServed": "Mumbai Western Line and Thane-Kalyan Belt",
-      "description": "350+ point on-site pre-delivery inspection for new cars with digital report in 15 minutes.",
-      "offers": {
-        "@type": "Offer",
-        "price": "999",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "https://checkmatepdi.com/#ppi-service",
-      "name": "Pre-Purchase Used Car Inspection",
-      "provider": { "@id": "https://checkmatepdi.com/#organization" },
-      "areaServed": "Mumbai Western Line and Thane-Kalyan Belt",
-      "description": "Detailed pre-purchase evaluation for used cars covering paint thickness, engine leaks, flood damage, and chassis integrity.",
-      "offers": {
-        "@type": "Offer",
-        "price": "999",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://checkmatepdi.com/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is a Car PDI (Pre-Delivery Inspection)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A Pre-Delivery Inspection (PDI) is a comprehensive 350+ point check performed on a new or used car before final payment or handover. It checks paint thickness, engine fluids, electricals, odometer readings, and detects hidden repaint/accident history."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How much does a CheckMate PDI cost?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Our independent car PDI inspections start at ₹999. Every package includes a full 350+ point checklist, photo evidence of defects, and a digital report delivered within 15 minutes."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which areas in Mumbai and Thane do you cover?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We provide on-site inspections across Churchgate to Virar (Western Line) and Thane to Kalyan (including Kalwa, Mumbra, Dombivli, Diva, and Thakurli)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How long does the inspection take and when do I get the report?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "On-site physical inspection takes 45 to 60 minutes. Your complete digital report with photo evidence is sent via WhatsApp and Email within 15 minutes of completion."
-          }
-        }
-      ]
-    }
-  ]
-};
+const pdiService = serviceSchema({
+  name: "Pre-Delivery Car Inspection (PDI)",
+  serviceType: "Pre-Delivery Inspection",
+  description: `On-site 84-point pre-delivery inspection of a new car at a dealership yard or stockyard, with photo evidence for every finding and a digital report within ${serviceFacts.reportDeliveryMinutes} minutes. Available in ${serviceAreaSummary.count} areas across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. From ${serviceFacts.priceFromLabel}.`,
+  path: "/services/pre-delivery-inspection"
+});
+
+const prePurchaseService = serviceSchema({
+  name: "Pre-Purchase Used Car Inspection",
+  serviceType: "Pre-Purchase Inspection",
+  description: `Independent used car inspection before you pay the seller, covering paint thickness, accident and flood history, odometer verification, engine bay condition and a full functional check. Report within ${serviceFacts.reportDeliveryMinutes} minutes. From ${serviceFacts.priceFromLabel}, no travel charge.`,
+  path: "/services/pre-purchase-inspection"
+});
+
+const jsonLd = graph([
+  organizationSchema(),
+  websiteSchema(),
+  llmsTxtSchema(),
+  pdiService,
+  prePurchaseService,
+  faqSchema(faqItems, "/"),
+  howToSchema({
+    name: "How to book a car PDI inspection with CheckMate PDI",
+    description:
+      "Five steps from sharing your vehicle details to receiving the inspection report on WhatsApp and email.",
+    path: "/services/pre-delivery-inspection",
+    steps: processSteps
+  })
+]);
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang={siteConfig.language}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={jsonLd} />
+        <meta name="geo.region" content="IN-MH" />
+        <meta name="geo.placename" content="Mumbai" />
       </head>
       <body className={`${headingFont.variable} ${bodyFont.variable}`}>{children}</body>
     </html>

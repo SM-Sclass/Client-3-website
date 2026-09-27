@@ -1,10 +1,11 @@
 export const navigation = [
   { label: "How It Works", href: "#our-process" },
+  { label: "Services", href: "#services" },
   { label: "Proof", href: "#proof" },
-  { label: "Coverage", href: "#inspection-areas" },
+  { label: "Coverage", href: "#coverage" },
   { label: "Reviews", href: "#reviews" },
   { label: "Sample Report", href: "#sample-report" },
-  { label: "Why Buyers Trust Us", href: "#trust" },
+  { label: "Why Buyers Trust Us", href: "#why-checkmate" },
   { label: "Contact", href: "#contact" }
 ];
 
@@ -26,26 +27,26 @@ export const heroHighlights = [
 export const heroSlides = [
   {
     name: "LAND ROVER DEFENDER",
-    title: "Complete 360Â° Inspection for Premium SUVs.",
-    text: "Thorough checks on body panels, chassis, drivetrain, and luxury features â€” every detail documented with photo evidence.",
+    title: "Complete 360° Inspection for Premium SUVs.",
+    text: "Thorough checks on body panels, chassis, drivetrain, and luxury features — every detail documented with photo evidence.",
     image: "/assets/inspection-proof-02.jpeg"
   },
   {
     name: "MAHINDRA XUV",
     title: "Real Car. Real Inspection. Real Proof.",
-    text: "Every panel, paint layer, and mechanical detail is checked and documented with photo evidence â€” so you know exactly what you're buying.",
+    text: "Every panel, paint layer, and mechanical detail is checked and documented with photo evidence — so you know exactly what you're buying.",
     image: "/assets/inspection-proof-06.jpeg"
   },
   {
     name: "LAND ROVER DEFENDER",
     title: "Pre-Delivery Inspection Before You Sign.",
-    text: "Focused paint thickness checks, suspension review, and full exterior verification â€” everything you need before handover.",
+    text: "Focused paint thickness checks, suspension review, and full exterior verification — everything you need before handover.",
     image: "/assets/inspection-proof-04.jpeg"
   },
   {
     name: "TOYOTA URBAN CRUISER",
     title: "Every Car Type Inspected with Equal Precision.",
-    text: "From everyday hatchbacks to premium crossovers â€” every model gets the same thorough 350+ point checklist.",
+    text: "From everyday hatchbacks to premium crossovers — every model gets the same thorough 84-point checklist.",
     image: "/assets/inspection-proof-10.jpeg"
   }
 ];
@@ -83,7 +84,7 @@ export const processSteps = [
   },
   {
     title: "Inspector Visit",
-    text: "A certified inspector visits the vehicle and performs the full 350+ point check."
+    text: "A certified inspector visits the vehicle and performs the full 84-point check."
   },
   {
     title: "Photo Report",
@@ -295,7 +296,7 @@ export const reportMeta = [
 
 export const sampleVehicle = {
   name: "Hyundai Creta",
-  subtitle: "2020 SX(O) Â· Diesel Â· Automatic"
+  subtitle: "2020 SX(O) · Diesel · Automatic"
 };
 
 export const reportRemark =
@@ -334,7 +335,7 @@ export const reviewItems = [
     carModel: "Hyundai Creta SX(O)",
     city: "Pune",
     problem: "Hidden front bumper leak and engine bay fluid trail discovered before delivery.",
-    cost: "â‚¹18,000",
+    cost: "₹18,000",
     saved: "Avoided paying for a car with a developing coolant leak and possible head gasket issue.",
     photos: [
       "/assets/inspection-proof-01.jpeg",
@@ -437,7 +438,7 @@ export const contactItems = [
   }
 ];
 
-export const brandTagline = "à¤—à¤¾à¤¡à¤¼à¥€ à¤²à¥‡à¤¨à¥‡ à¤¸à¥‡ à¤ªà¤¹à¤²à¥‡, CheckMate à¤œà¤¼à¤°à¥‚à¤° à¤•à¤°à¥‡à¤‚à¥¤";
+export const brandTagline = "गाड़ी लाओ, सो पूछो, CheckMate ज़रूर करें।";
 
 export const serviceNotes = [
   "Ideal before token payment or final handover.",
@@ -486,11 +487,11 @@ export const corridorPages = [
 export const faqItems = [
   {
     q: "What is a Car PDI (Pre-Delivery Inspection)?",
-    a: "A Pre-Delivery Inspection (PDI) is a comprehensive 350+ point check performed on a new or used car before you make final payment or take delivery. Our certified inspectors verify panel alignment, paint thickness, engine health, electricals, odometer readings, and detect hidden transit or accident damage."
+    a: "A Pre-Delivery Inspection (PDI) is a comprehensive 84-point check performed on a new or used car before you make final payment or take delivery. Our certified inspectors verify panel alignment, paint thickness, engine health, electricals, odometer readings, and detect hidden transit or accident damage."
   },
   {
     q: "How much does a CheckMate PDI cost?",
-    a: "Our independent car PDI inspections start at ₹999. Every package includes a full 350+ point evaluation, high-resolution photo evidence of any issues found, and a decision-ready digital report delivered within 15 minutes of completion."
+    a: "Our independent car PDI inspections start at ₹999. Every package includes a full 84-point evaluation, high-resolution photo evidence of any issues found, and a decision-ready digital report delivered within 15 minutes of completion."
   },
   {
     q: "Which areas in Mumbai and Thane do you cover?",

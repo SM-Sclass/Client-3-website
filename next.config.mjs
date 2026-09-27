@@ -2,12 +2,25 @@
 const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [
+    remotePatterns: []
+  },
+  async headers() {
+    return [
       {
-        protocol: "https",
-        hostname: "**"
+        source: "/llms.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "X-Robots-Tag", value: "index, follow" }
+        ]
+      },
+      {
+        source: "/llms-full.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "X-Robots-Tag", value: "index, follow" }
+        ]
       }
-    ]
+    ];
   }
 };
 

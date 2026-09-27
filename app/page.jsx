@@ -9,6 +9,9 @@ import { StatusPill } from "@/components/status-pill";
 import { Icon } from "@/components/icon";
 import { ReviewSection } from "@/components/review-section";
 import { Reveal } from "@/components/reveal";
+import { SiteFooter } from "@/components/site-footer";
+import { getAreasByZone, serviceAreaSummary, zones } from "@/app/data/locations";
+import { services } from "@/app/data/services";
 import {
   confidenceStats,
   contactActions,
@@ -29,9 +32,7 @@ import {
   trustPillars,
   heroSlides,
   proofGallery,
-  verifiedReviews,
-  corridorPages,
-  faqItems
+  verifiedReviews,  faqItems
 } from "@/app/site-data";
 
 const heroScore = 94;
@@ -68,7 +69,7 @@ export default function HomePage() {
             <SectionLabel>Trusted car inspection for every buyer</SectionLabel>
             <h1>Premium Pre-Delivery Inspections for Confident Car Purchases.</h1>
             <p className="hero-text">
-              Our certified inspectors carry out a complete 350+ point pre-delivery inspection, capturing every major detail with photo-backed evidence and clear, expert findings.
+              Our certified inspectors carry out a complete 84-point pre-delivery inspection, capturing every major detail with photo-backed evidence and clear, expert findings.
             </p>
             <p className="hero-text hero-text-extended">
               Get a polished, decision-ready report within 15 minutes — so you can buy with confidence and avoid unexpected issues after handover.
@@ -80,7 +81,7 @@ export default function HomePage() {
             <div className="hero-badge-grid">
               <div className="hero-badge-card">
                 <Icon className="button-icon" name="check" />
-                350+ checkpoints
+                84-point checklist
               </div>
               <div className="hero-badge-card">
                 <Icon className="button-icon" name="rupee" />
@@ -101,7 +102,7 @@ export default function HomePage() {
             <div className="hero-trustline">
               <div className="hero-rating">
                 <Icon className="trust-icon" name="shield" />
-                <span>350+ checkpoints, photo evidence, report in 15 minutes.</span>
+                <span>84-point checklist, photo evidence, report in 15 minutes.</span>
               </div>
             </div>
           </div>
@@ -194,12 +195,12 @@ export default function HomePage() {
               </p>
               <div className="section-intro-metrics">
                 <div>
-                  <strong>350+</strong>
-                  <span>checkpoints</span>
+                  <strong>84</strong>
+                  <span>checklist points</span>
                 </div>
                 <div>
-                  <strong>150+</strong>
-                  <span>photo evidence</span>
+                  <strong>Every</strong>
+                  <span>finding photographed</span>
                 </div>
                 <div>
                   <strong>₹999</strong>
@@ -313,7 +314,7 @@ export default function HomePage() {
                   <ul className="cta-list" style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                       <Icon name="check" className="cta-list-icon" style={{ marginTop: '2px', flexShrink: 0, color: 'var(--green-600)' }} /> 
-                      <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>Full 350+ point evaluation</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>Full 84-point evaluation</span>
                     </li>
                     <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                       <Icon name="check" className="cta-list-icon" style={{ marginTop: '2px', flexShrink: 0, color: 'var(--green-600)' }} /> 
@@ -334,6 +335,79 @@ export default function HomePage() {
                 <p style={{ marginTop: '16px', fontSize: '0.85rem', color: 'var(--text-muted)', textAlign: 'center' }}>PDF Document</p>
               </article>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SERVICES ── */}
+      <section className="section-space" id="services">
+        <div className="container">
+          <div className="section-heading">
+            <SectionLabel>What we do</SectionLabel>
+            <h2>Two inspections, one checklist, every location.</h2>
+            <p>
+              Whether the car is brand new and sitting in a dealer yard, or second hand and being
+              sold by a private owner, the discipline is the same: a fixed checklist, a fixed grading
+              scale, and photo evidence for every finding.
+            </p>
+          </div>
+
+          <div className="feature-card-grid">
+            {services.map((service) => (
+              <a className="feature-card" href={`/services/${service.slug}`} key={service.slug}>
+                <div className="feature-card-icon">
+                  <Icon name="report" />
+                </div>
+                <h3>{service.navLabel}</h3>
+                <p>{service.summary}</p>
+                <span className="feature-card-link">Read more</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── COVERAGE ZONES ── */}
+      <section className="section-band" id="coverage">
+        <div className="container">
+          <div className="section-heading section-heading-split">
+            <div>
+              <SectionLabel>Where we inspect</SectionLabel>
+              <h2>
+                {serviceAreaSummary.count} areas across {serviceAreaSummary.zoneCount} zones.
+              </h2>
+            </div>
+            <p>
+              We travel to the vehicle, so coverage is the real question. There is no travel charge
+              anywhere in the service area and the price never changes with distance.
+            </p>
+          </div>
+
+          <div className="zone-link-grid">
+            {zones.map((zone) => (
+              <a className="zone-link-card" href={`/service-areas#${zone.id}`} key={zone.id}>
+                <h3>{zone.name}</h3>
+                <p>{zone.line}</p>
+                <span className="zone-link-areas">
+                  {getAreasByZone(zone.id)
+                    .map((area) => area.name)
+                    .join(", ")}
+                </span>
+                <span className="feature-card-link">See areas</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="inline-links">
+            <a href="/service-areas">Full service area list</a>
+            <a href="/car-inspection-south-mumbai">South Mumbai</a>
+            <a href="/car-inspection-bandra-andheri">Bandra to Andheri</a>
+            <a href="/car-inspection-goregaon-borivali">Goregaon to Borivali</a>
+            <a href="/car-inspection-mira-virar">Mira Road to Virar</a>
+            <a href="/car-inspection-palghar">Palghar</a>
+            <a href="/car-inspection-navi-mumbai">Navi Mumbai</a>
+            <a href="/car-inspection-thane">Thane</a>
+            <a href="/car-inspection-kalyan-dombivli">Kalyan and Dombivli</a>
           </div>
         </div>
       </section>
@@ -458,44 +532,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand-col">
-            <BrandMark />
-            <p className="footer-desc">
-              Independent, evidence-based car inspections. Know the car, know the truth, and drive with confidence.
-            </p>
-          </div>
-          <div className="footer-links-col">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#why-checkmate">Why Choose Us</a></li>
-              <li><a href="#our-process">How it Works</a></li>
-              <li><a href="#inspection-areas">Coverage</a></li>
-              <li><a href="#reviews">Reviews</a></li>
-              <li><a href="#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div className="footer-links-col">
-            <h4>Corridor Coverage</h4>
-            <ul>
-              {corridorPages.map((c) => (
-                <li key={c.href}><a href={c.href}>{c.title}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div className="footer-links-col">
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="https://wa.me/917039935536" target="_blank" rel="noopener noreferrer">+91 70399 35536</a></li>
-              <li><a href="mailto:checkmate.pdiexxpert@gmail.com">checkmate.pdiexxpert@gmail.com</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="container footer-bottom">
-          <p>© {new Date().getFullYear()} CheckMate PDI Exxpert. All rights reserved.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
