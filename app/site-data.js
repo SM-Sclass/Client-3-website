@@ -1,62 +1,4 @@
-export const navigation = [
-  { label: "How It Works", href: "#our-process" },
-  { label: "Services", href: "#services" },
-  { label: "Proof", href: "#proof" },
-  { label: "Coverage", href: "#coverage" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Sample Report", href: "#sample-report" },
-  { label: "Why Buyers Trust Us", href: "#why-checkmate" },
-  { label: "Contact", href: "#contact" }
-];
-
-export const heroHighlights = [
-  {
-    title: "Independent report",
-    text: "Clear findings for the buyer, with no showroom pressure or sales bias."
-  },
-  {
-    title: "Photo-backed evidence",
-    text: "Every issue is supported with images so you can evaluate the car instantly."
-  },
-  {
-    title: "Decision-ready delivery",
-    text: "A polished report delivered within 15 minutes so you can negotiate or accept with confidence."
-  }
-];
-
-export const heroSlides = [
-  {
-    name: "LAND ROVER DEFENDER",
-    title: "Complete 360° Inspection for Premium SUVs.",
-    text: "Thorough checks on body panels, chassis, drivetrain, and luxury features — every detail documented with photo evidence.",
-    image: "/assets/inspection-proof-02.jpeg"
-  },
-  {
-    name: "MAHINDRA XUV",
-    title: "Real Car. Real Inspection. Real Proof.",
-    text: "Every panel, paint layer, and mechanical detail is checked and documented with photo evidence — so you know exactly what you're buying.",
-    image: "/assets/inspection-proof-06.jpeg"
-  },
-  {
-    name: "LAND ROVER DEFENDER",
-    title: "Pre-Delivery Inspection Before You Sign.",
-    text: "Focused paint thickness checks, suspension review, and full exterior verification — everything you need before handover.",
-    image: "/assets/inspection-proof-04.jpeg"
-  },
-  {
-    name: "TOYOTA URBAN CRUISER",
-    title: "Every Car Type Inspected with Equal Precision.",
-    text: "From everyday hatchbacks to premium crossovers — every model gets the same thorough 84-point checklist.",
-    image: "/assets/inspection-proof-10.jpeg"
-  }
-];
-
-export const confidenceStats = [
-  "84-point structured checklist",
-  "11 inspection sections",
-  "Photo and VIN evidence",
-  "Decision-ready digital report"
-];
+import { contactConfig, serviceFacts, whatsappLink } from "./data/business";
 
 export const trustPillars = [
   {
@@ -84,7 +26,7 @@ export const processSteps = [
   },
   {
     title: "Inspector Visit",
-    text: "A certified inspector visits the vehicle and performs the full 84-point check."
+    text: `A certified inspector visits the vehicle and performs the full ${serviceFacts.checklistPointsLabel} check.`
   },
   {
     title: "Photo Report",
@@ -96,183 +38,6 @@ export const processSteps = [
   }
 ];
 
-export const inspectionSections = [
-  {
-    number: "01",
-    title: "Buyer Details",
-    type: "Booking info",
-    description: "The basic details needed to schedule the inspection and deliver the report.",
-    items: ["Buyer Name", "Mobile Number", "Email ID", "City"]
-  },
-  {
-    number: "02",
-    title: "Vehicle Details",
-    type: "Vehicle identity",
-    description: "Core car information is captured before the technical checks begin.",
-    items: [
-      "Car Brand",
-      "Model",
-      "Variant",
-      "Fuel Type",
-      "Transmission",
-      "Color",
-      "VIN Number",
-      "Odometer Reading"
-    ]
-  },
-  {
-    number: "03",
-    title: "Exterior Inspection",
-    type: "Condition check",
-    description: "Panels, paint, lights, alignment, trims, mirrors, and visible impact areas.",
-    items: [
-      "Front Bumper",
-      "Front Grill",
-      "Bonnet Paint",
-      "Bonnet Alignment",
-      "Left Headlight",
-      "Right Headlight",
-      "DRL Lights",
-      "Fog Lamps",
-      "Front Parking Sensors",
-      "Left Fender",
-      "Left Front Door",
-      "Left Rear Door",
-      "Left Mirror",
-      "Right Fender",
-      "Right Front Door",
-      "Right Rear Door",
-      "Right Mirror",
-      "Rear Bumper",
-      "Boot Lid",
-      "Rear Camera",
-      "Rear Parking Sensors",
-      "Tail Lights",
-      "Roof Paint",
-      "Roof Rails",
-      "Sunroof (If Available)"
-    ],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "04",
-    title: "Glass Check",
-    type: "Condition check",
-    description: "Windshields and side glass are checked for cracks, chips, and visibility issues.",
-    items: ["Front Windshield", "Rear Windshield", "Left Glass", "Right Glass"],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "05",
-    title: "Tyre and Wheel Check",
-    type: "Condition check",
-    description: "Tyre condition, spare readiness, tread depth, and manufacturing date are reviewed.",
-    items: [
-      "Front Left Tyre",
-      "Front Right Tyre",
-      "Rear Left Tyre",
-      "Rear Right Tyre",
-      "Spare Wheel",
-      "Tyre Manufacturing Date"
-    ],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "06",
-    title: "Interior Inspection",
-    type: "Condition check",
-    description: "Comfort, cabin wear, controls, infotainment, AC, and power features are verified.",
-    items: [
-      "Seat Condition",
-      "Seat Belts",
-      "Dashboard Condition",
-      "Steering Wheel",
-      "Steering Controls",
-      "Infotainment System",
-      "Speakers",
-      "AC Cooling",
-      "Cabin Lights",
-      "Power Windows",
-      "Central Locking",
-      "Boot Space"
-    ],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "07",
-    title: "Engine Bay",
-    type: "Mechanical review",
-    description: "Fluids, battery, wiring, and engine behavior are checked for obvious risks.",
-    items: [
-      "Engine Oil Level",
-      "Coolant Level",
-      "Brake Fluid",
-      "Battery Condition",
-      "Engine Wiring",
-      "Engine Noise"
-    ],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "08",
-    title: "Electrical System",
-    type: "Functional check",
-    description: "Lights, horn, wipers, and other essential electrical functions are tested.",
-    items: [
-      "Headlights",
-      "Indicators",
-      "Fog Lamps",
-      "Brake Lights",
-      "Reverse Lights",
-      "Hazard Lights",
-      "Horn",
-      "Wipers"
-    ],
-    options: ["OK", "Minor Issue", "Major Issue"]
-  },
-  {
-    number: "09",
-    title: "Photo Evidence",
-    type: "Report evidence",
-    description: "Key photos are attached to support the findings and help remote buyers review them.",
-    items: [
-      "Exterior Photos",
-      "Interior Photos",
-      "Engine Bay Photos",
-      "Odometer Photo",
-      "VIN Plate Photo"
-    ]
-  },
-  {
-    number: "10",
-    title: "Final Result",
-    type: "Condition rating",
-    description: "A buyer-friendly condition summary and remarks section closes the report.",
-    items: ["Overall Car Condition", "Remarks / Notes"],
-    options: ["Excellent", "Good", "Minor Issues", "Major Issues"]
-  },
-  {
-    number: "11",
-    title: "Inspector Details",
-    type: "Report closure",
-    description: "Inspector identity and inspection date are recorded for accountability.",
-    items: ["Inspector Name", "Inspection Date", "Inspector Sign-off"]
-  }
-];
-
-export const reportRows = [
-  { label: "Buyer Details", score: "4/4", status: "OK" },
-  { label: "Vehicle Details", score: "8/8", status: "OK" },
-  { label: "Exterior Inspection", score: "21/25", status: "Minor Issue" },
-  { label: "Glass Check", score: "4/4", status: "OK" },
-  { label: "Tyre and Wheel Check", score: "5/6", status: "Minor Issue" },
-  { label: "Interior Inspection", score: "11/12", status: "Minor Issue" },
-  { label: "Engine Bay", score: "6/6", status: "OK" },
-  { label: "Electrical System", score: "8/8", status: "OK" },
-  { label: "Photo Evidence", score: "5/5", status: "OK" },
-  { label: "Final Result", score: "Good", status: "Good" },
-  { label: "Inspector Details", score: "3/3", status: "OK" }
-];
 
 export const evidenceItems = [
   { label: "Front bumper scratch", status: "Minor Issue" },
@@ -399,7 +164,7 @@ export const proofGalleryItems = [
 
 export const ctaChecklist = [
   "Pre-purchase and pre-delivery inspections",
-  "84-point inspection flow",
+  `${serviceFacts.checklistPointsLabel} inspection flow`,
   "Photo and VIN evidence",
   "Condition grading with remarks",
   "Digital report delivered within 15 minutes"
@@ -448,15 +213,15 @@ export const serviceNotes = [
 
 export const contactActions = [
   {
-    label: "Message on WhatsApp",
-    href: "https://wa.me/917039935536",
-    icon: "chat",
+    label: "Call to book",
+    href: `tel:${contactConfig.phone}`,
+    icon: "phone",
     variant: "solid"
   },
   {
-    label: "Visit Website",
-    href: "https://checkmatepdi.com",
-    icon: "search",
+    label: "Message on WhatsApp",
+    href: whatsappLink("Hi, I'd like to book a car inspection. Can you confirm pricing and availability?"),
+    icon: "whatsapp",
     variant: "outline"
   }
 ];
@@ -487,11 +252,11 @@ export const corridorPages = [
 export const faqItems = [
   {
     q: "What is a Car PDI (Pre-Delivery Inspection)?",
-    a: "A Pre-Delivery Inspection (PDI) is a comprehensive 84-point check performed on a new or used car before you make final payment or take delivery. Our certified inspectors verify panel alignment, paint thickness, engine health, electricals, odometer readings, and detect hidden transit or accident damage."
+    a: `A Pre-Delivery Inspection (PDI) is a comprehensive ${serviceFacts.checklistPointsLabel} check performed on a new or used car before you make final payment or take delivery. Our certified inspectors verify panel alignment, paint thickness, engine health, electricals, odometer readings, and detect hidden transit or accident damage.`
   },
   {
     q: "How much does a CheckMate PDI cost?",
-    a: "Our independent car PDI inspections start at ₹999. Every package includes a full 84-point evaluation, high-resolution photo evidence of any issues found, and a decision-ready digital report delivered within 15 minutes of completion."
+    a: `Our independent car PDI inspections start at ₹999. Every package includes a full ${serviceFacts.checklistPointsLabel} evaluation, high-resolution photo evidence of any issues found, and a decision-ready digital report delivered within 15 minutes of completion.`
   },
   {
     q: "Which areas in Mumbai and Thane do you cover?",

@@ -1,10 +1,15 @@
 import { contactConfig, openingHours, serviceFacts, siteConfig } from "./business";
 import { getAreasByZone, serviceAreaSummary, zones } from "./locations";
 import { services } from "./services";
-import { faqItems, inspectionSections } from "../site-data";
+import { faqItems } from "../site-data";
+import { inspectionSections } from "./checklist";
 
 const checklistLines = inspectionSections.map(
-  (section) => `- Section ${section.number}: ${section.title} (${section.items.length} points) - ${section.description}`
+  (section) => {
+    const count = ` (${section.items.length} items${section.graded ? `, ${section.gradedCount} graded checks` : ""})`;
+    const items = section.items.length ? ` Items: ${section.items.join("; ")}.` : "";
+    return `- Section ${section.number}: ${section.title}${count} - ${section.description}${items}`;
+  }
 );
 
 function areaLine(zone) {
@@ -19,9 +24,7 @@ export function buildLlmsTxt() {
     "",
     `> ${siteConfig.tagline}`,
     "",
-    "This file is a plain-text summary of checkmatepdi.com, written for language models and AI",
-    "search engines. Every fact below is also present in the site's structured data (schema.org",
-    "JSON-LD) and in machine-readable HTML on the corresponding pages.",
+    `Use this summary for service, coverage and booking details. See the [full reference](${siteConfig.url}/llms-full.txt) for the detailed checklist and location index.`,
     "",
     "## Canonical facts",
     "",
@@ -30,6 +33,8 @@ export function buildLlmsTxt() {
     `- Service type: Independent, on-site car Pre-Delivery Inspection (PDI) and used car Pre-Purchase Inspection`,
     `- Operating model: Mobile / on-site only. Inspectors travel to the vehicle. No public walk-in office.`,
     `- Checklist: ${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections`,
+    `- Report: ${serviceFacts.reportSections} sections, ${serviceFacts.reportItems} published items including ${serviceFacts.checklistPoints} core items`,
+    `- Technical inspection: ${serviceFacts.technicalSections} sections, ${serviceFacts.technicalItems} technical items, ${serviceFacts.gradedChecks} graded checks. Tyre manufacturing date is recorded.`,
     `- Grading scale: ${serviceFacts.gradingScale.join(" / ")}`,
     `- Overall condition grades: Excellent, Good, Minor Issues, Major Issues`,
     `- Starting price: ${serviceFacts.priceFromLabel}`,
@@ -45,8 +50,9 @@ export function buildLlmsTxt() {
     "",
     "## Contact",
     "",
-    `- Phone and WhatsApp: ${contactConfig.phoneDisplay} (${contactConfig.phone})`,
+    `- Call to book: [${contactConfig.phoneDisplay}](tel:${contactConfig.phone})`,
     `- WhatsApp link: ${contactConfig.whatsapp}`,
+    "- Share the car model, vehicle location and preferred date to confirm pricing and availability.",
     `- Email: ${contactConfig.email}`,
     `- Instagram: ${contactConfig.instagramHandle} (${contactConfig.instagram})`,
     `- Facebook: ${contactConfig.facebookName} (${contactConfig.facebook})`,
@@ -165,7 +171,8 @@ export function buildLlmsFullTxt() {
     "",
     "## 4. The checklist",
     "",
-    `${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections.`,
+    `${serviceFacts.reportItems} published items across ${serviceFacts.reportSections} report sections, including ${serviceFacts.checklistPoints} core items.`,
+    `${serviceFacts.technicalItems} technical items across ${serviceFacts.technicalSections} inspection sections, including ${serviceFacts.gradedChecks} graded checks.`,
     "The same checklist and the same grading are used in every location, so reports are directly",
     "comparable between areas.",
     "",

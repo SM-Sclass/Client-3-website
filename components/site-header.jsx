@@ -1,85 +1,89 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { BrandMark } from "@/components/brand-mark";
 import { Icon } from "@/components/icon";
+import { contactConfig } from "@/app/data/business";
 
-export function SiteHeader({ navigation }) {
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "New Car PDI", href: "/services/pre-delivery-inspection" },
+  { label: "Used Car Inspection", href: "/services/pre-purchase-inspection" },
+  { label: "Service Areas", href: "/service-areas" },
+  { label: "Sample Report", href: "/sample-report" },
+  { label: "Contact", href: "/contact" }
+];
+
+export function SiteHeader() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef(null);
+  const toggleRef = useRef(null);
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open", isMenuOpen);
+    if (!isMenuOpen) return;
 
+    function handleEscape(event) {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      toggleRef.current?.focus();
+    }
+
+    function handleOutsidePress(event) {
+      if (!headerRef.current?.contains(event.target)) setIsMenuOpen(false);
+    }
+
+    const desktop = window.matchMedia("(min-width: 1001px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("pointerdown", handleOutsidePress);
+    desktop.addEventListener("change", closeOnDesktop);
     return () => {
-      document.body.classList.remove("menu-open");
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("pointerdown", handleOutsidePress);
+      desktop.removeEventListener("change", closeOnDesktop);
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  function closeMenu() {
-    setIsMenuOpen(false);
-  }
-
   return (
-    <header className="site-header">
-      <div className="container site-header-inner">
-        <div className="nav-shell">
-          <BrandMark />
-
-          <nav className="site-nav" aria-label="Primary">
-            {navigation.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="header-actions">
-            <a className="button button-solid header-cta" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer">
-              <Icon className="button-icon" name="whatsapp" />
-              Book Now
-            </a>
-
-            <button
-              aria-controls="mobile-menu"
-              aria-expanded={isMenuOpen}
-              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="menu-toggle"
-              onClick={() => setIsMenuOpen((current) => !current)}
-              type="button"
-            >
-              <Icon className="menu-toggle-icon" name={isMenuOpen ? "close" : "menu"} />
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={`mobile-menu${isMenuOpen ? " is-open" : ""}`}
-          id="mobile-menu"
-          aria-hidden={!isMenuOpen}
+    <header className="site-header" ref={headerRef}>
+      <div className="container nav-shell">
+        <BrandMark />
+        <button
+          ref={toggleRef}
+          aria-controls="primary-navigation"
+          aria-expanded={isMenuOpen}
+          className="menu-toggle"
+          onClick={() => setIsMenuOpen((current) => !current)}
+          type="button"
         >
-          <nav className="mobile-nav" aria-label="Mobile primary">
-            {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={closeMenu}>
-                {item.label}
-              </a>
-            ))}
-            <a className="button button-solid mobile-menu-cta" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
-              <Icon className="button-icon" name="whatsapp" />
-              Book an Inspection
+          <Icon className="menu-toggle-icon" name={isMenuOpen ? "close" : "menu"} />
+          {isMenuOpen ? "Close" : "Menu"}
+        </button>
+        <nav
+          id="primary-navigation"
+          className={`site-nav${isMenuOpen ? " is-open" : ""}`}
+          aria-label="Primary"
+        >
+          {navigation.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
             </a>
-          </nav>
-        </div>
+          ))}
+        </nav>
+        <a className="button button-solid header-cta" href={`tel:${contactConfig.phone}`}>
+          <Icon className="button-icon" name="phone" />
+          Call to book
+        </a>
       </div>
     </header>
   );

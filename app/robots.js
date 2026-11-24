@@ -43,7 +43,8 @@ export default function robots() {
       },
       {
         userAgent: aiAnswerCrawlers,
-        allow: ["/", "/llms.txt", "/llms-full.txt", "/sitemap.xml", "/sample-report.pdf"]
+        allow: "/",
+        disallow: ["/private/"]
       },
       {
         userAgent: searchCrawlers,

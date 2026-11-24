@@ -4,19 +4,17 @@ import { Icon } from "@/components/icon";
 import { JsonLd } from "@/components/json-ld";
 import { ProofHighlights } from "@/components/proof-highlights";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { SectionLabel } from "@/components/section-label";
 import {
   contactConfig,
   openingHours,
   serviceFacts,
   siteConfig,
-  subpageNavigation,
   whatsappLink
 } from "@/app/data/business";
 import { serviceAreaSummary, zones } from "@/app/data/locations";
 import { getService, services } from "@/app/data/services";
-import { inspectionSections } from "@/app/site-data";
+import { inspectionSections } from "@/app/data/checklist";
 import {
   breadcrumbSchema,
   faqSchema,
@@ -56,7 +54,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: service.metaTitle,
       description: service.metaDescription,
-      images: ["/Checkmatepdilogo.png"]
+      images: ["/assets/logo.png"]
     }
   };
 }
@@ -137,7 +135,6 @@ export default async function ServicePage({ params }) {
   return (
     <main className="page-shell" id="top">
       <JsonLd data={jsonLd} />
-      <SiteHeader navigation={subpageNavigation} />
 
       <section className="hero-section">
         <div className="container">
@@ -199,7 +196,7 @@ export default async function ServicePage({ params }) {
                   <dt>Checklist</dt>
                   <dd>
                     <strong>{serviceFacts.checklistPointsLabel} checklist</strong>
-                    <span>{serviceFacts.checklistSections} sections, graded individually</span>
+                    <span>{serviceFacts.technicalSections} vehicle inspection sections</span>
                   </dd>
                 </div>
                 <div className="area-fact">
@@ -286,8 +283,9 @@ export default async function ServicePage({ params }) {
               <SectionLabel>Full checklist</SectionLabel>
               <h2>The complete {serviceFacts.checklistPointsLabel} checklist, item by item.</h2>
               <p>
-                Every item below is graded OK, Minor Issue or Major Issue, and photographed when
-                there is something to show.
+                The report lists {serviceFacts.reportItems} items across {serviceFacts.reportSections} sections,
+                including {serviceFacts.checklistPoints} core items and the dealer-action summary. Applicable vehicle checks
+                are graded OK, Minor Issue or Major Issue, with photos to support the findings.
               </p>
             </div>
 
@@ -296,14 +294,16 @@ export default async function ServicePage({ params }) {
                 <article className="checklist-section" key={section.number}>
                   <h3>
                     {section.number}. {section.title}
-                    <span className="checklist-count">{section.items.length}</span>
+                    <span className="checklist-count">{section.items.length} items</span>
                   </h3>
                   <p className="checklist-section-desc">{section.description}</p>
-                  <ul>
+                  {section.items.length > 0 && <ul>
                     {section.items.map((item) => (
-                      <li key={item}>{item}</li>
+                          <li key={item}>
+                            {item}{section.referenceItems?.includes(item) && " (recorded)"}
+                          </li>
                     ))}
-                  </ul>
+                  </ul>}
                 </article>
               ))}
             </div>

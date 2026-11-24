@@ -10,24 +10,24 @@ export function InspectionSectionCard({ section }) {
       </div>
       <p className="inspection-card-description">{section.description}</p>
       <div className="inspection-card-meta">
-        <strong>{section.items.length} checkpoints</strong>
+        {section.graded && <strong>{section.gradedCount} graded checks</strong>}
         <span>
-          {section.options
-            ? "Marked as OK, Minor issue, or Major issue in the report."
-            : "Included as documented evidence in the final report."}
+          {section.graded
+            ? "Applicable checks are marked OK, Minor Issue or Major Issue."
+            : "Documented in the inspection report."}
         </span>
       </div>
-      <details className="inspection-card-details">
+      {section.items.length > 0 && <details className="inspection-card-details">
         <summary>
-          <span>View full checklist</span>
+          <span>{section.graded ? "View checks" : "View details"}</span>
           <span>{section.items.length} items</span>
         </summary>
         <ul className="inspection-card-list">
           {section.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>{item}{section.referenceItems?.includes(item) && " (recorded)"}</li>
           ))}
         </ul>
-      </details>
+      </details>}
     </article>
   );
 }

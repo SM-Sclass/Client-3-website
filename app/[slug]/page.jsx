@@ -4,19 +4,17 @@ import { Icon } from "@/components/icon";
 import { JsonLd } from "@/components/json-ld";
 import { ProofHighlights } from "@/components/proof-highlights";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { SectionLabel } from "@/components/section-label";
 import {
   contactConfig,
   openingHours,
   serviceFacts,
   siteConfig,
-  subpageNavigation,
   whatsappLink
 } from "@/app/data/business";
 import { getArea, getAreaSlugs, getAreaNeighbours, zoneById } from "@/app/data/locations";
 import { services } from "@/app/data/services";
-import { inspectionSections } from "@/app/site-data";
+import { inspectionSections } from "@/app/data/checklist";
 import {
   areaServiceSchema,
   breadcrumbSchema,
@@ -60,20 +58,20 @@ export async function generateMetadata({ params }) {
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: "article",
-      images: [{ url: "/Checkmatepdilogo.png", width: 800, height: 600, alt: `${siteConfig.name} car PDI inspection in ${area.name}` }]
+      images: [{ url: "/assets/logo.png", width: 1068, height: 476, alt: siteConfig.name }]
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/Checkmatepdilogo.png"]
+      images: ["/assets/logo.png"]
     }
   };
 }
 
 const factItems = [
   { label: "Starting price", value: serviceFacts.priceFromLabel, note: "No travel charge from any area" },
-  { label: "Checklist", value: serviceFacts.checklistPointsLabel, note: `${serviceFacts.checklistSections} sections, every item graded` },
+  { label: "Checklist", value: serviceFacts.checklistPointsLabel, note: `${serviceFacts.technicalSections} vehicle inspection sections` },
   { label: "Inspection time", value: `${serviceFacts.inspectionDurationMinutes} minutes`, note: "On site at the vehicle" },
   { label: "Report delivery", value: `${serviceFacts.reportDeliveryMinutes} minutes`, note: "WhatsApp and email, with photo evidence" },
   { label: "Working hours", value: "8:00 AM to 9:00 PM", note: "Open all seven days" },
@@ -123,15 +121,9 @@ export default async function AreaPage({ params }) {
     })
   ]);
 
-  const totalChecklistItems = inspectionSections.reduce(
-    (total, section) => total + section.items.length,
-    0
-  );
-
   return (
     <main className="page-shell" id="top">
       <JsonLd data={jsonLd} />
-      <SiteHeader navigation={subpageNavigation} />
 
       <section className="hero-section">
         <div className="container">
@@ -274,9 +266,11 @@ export default async function AreaPage({ params }) {
             <SectionLabel>The {serviceFacts.checklistPointsLabel} checklist</SectionLabel>
             <h2>What a car PDI in {area.name} checks.</h2>
             <p>
-              {serviceFacts.checklistSections} sections, {totalChecklistItems} published checklist
-              items, every one graded OK, Minor Issue or Major Issue, with photo evidence for each
-              finding. The same checklist is used in every location we cover.
+              The report has {serviceFacts.reportSections} sections and {serviceFacts.reportItems} items,
+              including {serviceFacts.checklistPoints} core items and a dealer-action summary.
+              The {serviceFacts.technicalSections} vehicle inspection sections cover {serviceFacts.technicalItems}
+              {" "}technical items, including {serviceFacts.gradedChecks} graded checks.
+              Applicable checks are graded OK, Minor Issue or Major Issue, with photos to support the findings.
             </p>
           </div>
 
@@ -289,7 +283,7 @@ export default async function AreaPage({ params }) {
                 <tr>
                   <th scope="col">Section</th>
                   <th scope="col">Type</th>
-                  <th scope="col">Points</th>
+                  <th scope="col">Items</th>
                   <th scope="col">What it covers</th>
                 </tr>
               </thead>
@@ -309,7 +303,7 @@ export default async function AreaPage({ params }) {
           </div>
 
           <div className="inline-links">
-            <a href="/services/what-we-check">See the full 84-point checklist</a>
+            <a href="/services/what-we-check">See the full {serviceFacts.checklistPointsLabel} checklist</a>
             <a href="/sample-report">See a real sample report</a>
             <a href="/services/car-inspection-cost">See inspection pricing</a>
           </div>

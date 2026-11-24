@@ -23,8 +23,8 @@ export function organizationSchema() {
       "@id": `${siteConfig.url}/#logo`,
       url: absoluteUrl("/assets/logo.png"),
       contentUrl: absoluteUrl("/assets/logo.png"),
-      width: 240,
-      height: 106,
+      width: 1068,
+      height: 476,
       caption: `${siteConfig.name} logo`
     },
     image: {

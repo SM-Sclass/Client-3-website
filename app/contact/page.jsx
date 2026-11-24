@@ -2,14 +2,12 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Icon } from "@/components/icon";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { SectionLabel } from "@/components/section-label";
 import {
   contactConfig,
   openingHours,
   serviceFacts,
   siteConfig,
-  subpageNavigation,
   whatsappLink
 } from "@/app/data/business";
 import { serviceAreaSummary, zones } from "@/app/data/locations";
@@ -88,7 +86,6 @@ export default function ContactPage() {
   return (
     <main className="page-shell" id="top">
       <JsonLd data={jsonLd} />
-      <SiteHeader navigation={subpageNavigation} />
 
       <section className="hero-section">
         <div className="container">

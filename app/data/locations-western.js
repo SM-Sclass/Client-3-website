@@ -1,3 +1,5 @@
+import { technicalItems, technicalSections, reportSections } from "./checklist";
+
 export const locationsWestern = [
   {
     slug: "car-inspection-churchgate",
@@ -121,7 +123,7 @@ export const locationsWestern = [
       },
       {
         q: "Is the same 11-section checklist used here as in Thane?",
-        a: "Yes. Every inspection across every location uses the same 11 sections and the same grading scale, so a report from Charni Road is directly comparable to one from Kalyan."
+        a: `Yes. Every inspection across every location uses the same ${reportSections} sections and the same grading scale, so a report from Charni Road is directly comparable to one from Kalyan.`
       }
     ]
   },
@@ -193,7 +195,7 @@ export const locationsWestern = [
     faqs: [
       {
         q: "Do you support corporate and fleet inspections?",
-        a: "Yes. Fleet inspections are booked the same way, and the report is a single PDF covering all 11 sections with photo evidence, which is usually what a procurement file needs."
+        a: `Yes. Fleet inspections are booked the same way, and the report is a single PDF covering all ${reportSections} sections with photo evidence, which is usually what a procurement file needs.`
       },
       {
         q: "Can you do two inspections in one visit?",
@@ -827,7 +829,7 @@ export const locationsWestern = [
       },
       {
         q: "What do you check on a new car before delivery?",
-        a: "Panel paint and gap consistency, glass, tyres and manufacturing dates, interior condition, engine bay fluids and battery, all electrical functions, the 84-point checklist items across 11 sections, plus VIN and odometer verification."
+        a: `Panel paint and gap consistency, glass, tyres and manufacturing dates, interior condition, engine bay fluids and battery, all electrical functions, the ${technicalItems} technical items across ${technicalSections} inspection sections, plus VIN and odometer verification.`
       },
       {
         q: "Can you inspect and deliver the same evening?",

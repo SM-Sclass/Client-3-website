@@ -3,11 +3,12 @@ import Script from "next/script";
 import "./globals.css";
 
 import { JsonLd } from "@/components/json-ld";
-import { serviceFacts, siteConfig } from "@/app/data/business";
+import { Icon } from "@/components/icon";
+import { SiteHeader } from "@/components/site-header";
+import { contactConfig, serviceFacts, siteConfig, whatsappLink } from "@/app/data/business";
 import { serviceAreaSummary } from "@/app/data/locations";
-import { faqItems, processSteps } from "@/app/site-data";
+import { processSteps } from "@/app/site-data";
 import {
-  faqSchema,
   graph,
   howToSchema,
   llmsTxtSchema,
@@ -30,12 +31,13 @@ const bodyFont = Inter({
   display: "swap"
 });
 
-const homeDescription = `Independent on-site car PDI and pre-purchase inspection in ${serviceAreaSummary.count} areas across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. ${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections, photo evidence for every finding, report in ${serviceFacts.reportDeliveryMinutes} minutes. From ${serviceFacts.priceFromLabel}, no travel charge.`;
+const homeTitle = "Car PDI & Used Car Inspection in Mumbai | CheckMate PDI";
+const homeDescription = `Book an on-site new car PDI or used car inspection in Mumbai, Palghar, Navi Mumbai, Thane or Kalyan. ${serviceFacts.checklistPointsLabel} checklist and photo report. From ${serviceFacts.priceFromLabel}.`;
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Car PDI Inspection Mumbai, Palghar & Navi Mumbai | CheckMate PDI | From ${serviceFacts.priceFromLabel}`,
+    default: homeTitle,
     template: "%s | CheckMate PDI"
   },
   description: homeDescription,
@@ -55,12 +57,6 @@ export const metadata = {
     "checkmatepdi"
   ],
   category: "Automotive",
-  alternates: {
-    canonical: siteConfig.url,
-    types: {
-      "text/plain": "/llms.txt"
-    }
-  },
   robots: {
     index: true,
     follow: true,
@@ -77,16 +73,16 @@ export const metadata = {
   },
   formatDetection: { telephone: true, email: true, address: false },
   openGraph: {
-    title: `Car PDI Inspection in Mumbai, Palghar & Navi Mumbai | CheckMate PDI`,
+    title: homeTitle,
     description: homeDescription,
     url: siteConfig.url,
     siteName: siteConfig.name,
     images: [
       {
-        url: "/Checkmatepdilogo.png",
-        width: 800,
-        height: 600,
-        alt: "CheckMate PDI Exxpert car inspection"
+        url: "/assets/inspection-proof-02.jpeg",
+        width: 1280,
+        height: 960,
+        alt: "Land Rover Defender from a CheckMate PDI inspection"
       }
     ],
     locale: siteConfig.locale,
@@ -94,16 +90,16 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Car PDI Inspection Mumbai | CheckMate PDI | From ${serviceFacts.priceFromLabel}`,
+    title: homeTitle,
     description: homeDescription,
-    images: ["/Checkmatepdilogo.png"]
+    images: ["/assets/inspection-proof-02.jpeg"]
   }
 };
 
 const pdiService = serviceSchema({
   name: "Pre-Delivery Car Inspection (PDI)",
   serviceType: "Pre-Delivery Inspection",
-  description: `On-site 84-point pre-delivery inspection of a new car at a dealership yard or stockyard, with photo evidence for every finding and a digital report within ${serviceFacts.reportDeliveryMinutes} minutes. Available in ${serviceAreaSummary.count} areas across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. From ${serviceFacts.priceFromLabel}.`,
+  description: `On-site ${serviceFacts.checklistPointsLabel} pre-delivery inspection of a new car at a dealership yard or stockyard, with photo evidence for every finding and a digital report within ${serviceFacts.reportDeliveryMinutes} minutes. Available in ${serviceAreaSummary.count} areas across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. From ${serviceFacts.priceFromLabel}.`,
   path: "/services/pre-delivery-inspection"
 });
 
@@ -120,7 +116,6 @@ const jsonLd = graph([
   llmsTxtSchema(),
   pdiService,
   prePurchaseService,
-  faqSchema(faqItems, "/"),
   howToSchema({
     name: "How to book a car PDI inspection with CheckMate PDI",
     description:
@@ -147,7 +142,25 @@ gtag('js', new Date());`}
         <meta name="geo.region" content="IN-MH" />
         <meta name="geo.placename" content="Mumbai" />
       </head>
-      <body className={`${headingFont.variable} ${bodyFont.variable}`}>{children}</body>
+      <body className={`${headingFont.variable} ${bodyFont.variable}`}>
+        <SiteHeader />
+        {children}
+        <aside className="booking-dock" aria-label="Book an inspection">
+          <a className="button button-call" href={`tel:${contactConfig.phone}`}>
+            <Icon className="button-icon" name="phone" />
+            Call to book
+          </a>
+          <a
+            className="button button-solid"
+            href={whatsappLink("Hi, I'd like to book a car inspection. Can you confirm pricing and availability?")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon className="button-icon" name="whatsapp" />
+            WhatsApp
+          </a>
+        </aside>
+      </body>
     </html>
   );
 }

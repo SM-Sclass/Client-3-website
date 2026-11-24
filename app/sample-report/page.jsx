@@ -2,25 +2,24 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Icon } from "@/components/icon";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { SectionLabel } from "@/components/section-label";
 import {
   contactConfig,
   openingHours,
   serviceFacts,
   siteConfig,
-  subpageNavigation,
   whatsappLink
 } from "@/app/data/business";
 import { serviceAreaSummary } from "@/app/data/locations";
 import { breadcrumbSchema, faqSchema, graph, webPageSchema } from "@/app/data/schema";
-import { evidenceItems, reportMeta, reportRemark, reportRows } from "@/app/site-data";
+import { evidenceItems, reportMeta, reportRemark } from "@/app/site-data";
+import { inspectionSections } from "@/app/data/checklist";
 
 const path = "/sample-report";
 
 const title = "Sample PDI Report | What a CheckMate Car Inspection Report Contains";
 
-const description = `A real past CheckMate PDI report broken down section by section: the ${serviceFacts.checklistSections} sections, the ${serviceFacts.checklistPointsLabel} checklist, the OK / Minor Issue / Major Issue grading, photo evidence and written remarks. Download the PDF.`;
+const description = "Download a real past CheckMate PDI inspection report and see how condition grades, photos and inspector remarks are presented.";
 
 const faqs = [
   {
@@ -29,7 +28,7 @@ const faqs = [
   },
   {
     q: "How long is a CheckMate PDI report?",
-    a: "The report has 11 sections covering all 84 checklist points, with a grade for every item, written remarks, an overall condition grade, and photo evidence for each finding."
+    a: `Current reports have ${serviceFacts.reportSections} sections and ${serviceFacts.reportItems} items, including ${serviceFacts.gradedChecks} graded vehicle checks. The archived sample shows the earlier format.`
   },
   {
     q: "What do the grades mean?",
@@ -56,7 +55,7 @@ export const metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "article",
-    images: [{ url: "/Checkmatepdilogo.png", width: 800, height: 600, alt: "Sample CheckMate PDI report" }]
+    images: [{ url: "/assets/logo.png", width: 1068, height: 476, alt: siteConfig.name }]
   }
 };
 
@@ -83,7 +82,6 @@ export default function SampleReportPage() {
   return (
     <main className="page-shell" id="top">
       <JsonLd data={jsonLd} />
-      <SiteHeader navigation={subpageNavigation} />
 
       <section className="hero-section">
         <div className="container">
@@ -94,17 +92,13 @@ export default function SampleReportPage() {
               <SectionLabel>Sample report</SectionLabel>
               <h1>What a CheckMate PDI Report Actually Contains.</h1>
               <p className="hero-text">
-                This is a real report from a past inspection, reproduced section by section so you
-                can see exactly what you get before you book. The vehicle below was inspected in
-                Pune, outside our regular service belt, and is shown precisely because it is
-                genuine. The format is identical to every report we issue in Mumbai, Palghar,
-                Navi Mumbai, Thane and Kalyan.
+                This report comes from a past inspection in Pune. It shows how findings, photos
+                and remarks were presented for that vehicle.
               </p>
               <p className="hero-text hero-text-extended">
-                Every report is a {serviceFacts.checklistPointsLabel} checklist across{" "}
-                {serviceFacts.checklistSections} sections, grades each item as OK, Minor Issue or
-                Major Issue, attaches photo evidence to every finding, and closes with an overall
-                condition grade and written remarks.
+                Current reports have {serviceFacts.reportSections} sections and use the{" "}
+                <a href="/services/what-we-check">{serviceFacts.checklistPointsLabel} inspection checklist</a>.
+                Applicable checks are graded OK, Minor Issue or Major Issue.
               </p>
               <div className="hero-actions">
                 <a
@@ -146,36 +140,32 @@ export default function SampleReportPage() {
       <section className="section-band">
         <div className="container">
           <div className="section-heading">
-            <SectionLabel>Section scores</SectionLabel>
-            <h2>How the report is graded.</h2>
+            <SectionLabel>Current report format</SectionLabel>
+            <h2>What the report includes today</h2>
             <p>
-              Each section is scored against the number of checklist items it contains, so you can
-              see at a glance where a car is strong and where it is not.
+              Current reports include {serviceFacts.checklistPoints} core items and a dealer-action
+              summary. Vehicle checks are graded where applicable.
             </p>
           </div>
 
           <div className="table-wrap">
             <table className="checklist-table report-table">
               <caption className="visually-hidden">
-                Section scores from a real CheckMate PDI report
+                Items by section in the current CheckMate PDI report
               </caption>
               <thead>
                 <tr>
                   <th scope="col">Section</th>
-                  <th scope="col">Score</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Items</th>
                 </tr>
               </thead>
               <tbody>
-                {reportRows.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row">{row.label}</th>
-                    <td>{row.score}</td>
-                    <td>
-                      <span className={`status-tag status-${row.status.toLowerCase().replace(/\s+/g, "-")}`}>
-                        {row.status}
-                      </span>
-                    </td>
+                {inspectionSections.map((section) => (
+                  <tr key={section.number}>
+                    <th scope="row">{section.title}</th>
+                    <td>{section.type}</td>
+                    <td>{section.items.length}</td>
                   </tr>
                 ))}
               </tbody>

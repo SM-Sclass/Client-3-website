@@ -1,3 +1,5 @@
+import { checklistPoints, technicalItems } from "./checklist";
+
 export const corridors = [
   {
     slug: "car-inspection-south-mumbai",
@@ -6,9 +8,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in South Mumbai",
     metaTitle: "Car PDI Inspection South Mumbai | Pre-Delivery Checks Churchgate to Dadar",
     metaDescription:
-      "Car PDI and pre-purchase inspection in South Mumbai: Churchgate, Marine Lines, Charni Road, Grant Road, Mumbai Central, Mahalaxmi, Lower Parel, Prabhadevi, Dadar and Mahim. 84-point checklist, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection in South Mumbai: Churchgate, Marine Lines, Charni Road, Grant Road, Mumbai Central, Mahalaxmi, Lower Parel, Prabhadevi, Dadar and Mahim. ${checklistPoints}-point checklist, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Buying a new or premium used car around Churchgate, Lower Parel or Dadar? Our inspectors visit dealership stockyards and private sellers across South Mumbai to carry out a complete 84-point pre-delivery inspection before you pay.",
+      `Buying a new or premium used car around Churchgate, Lower Parel or Dadar? Our inspectors visit dealership stockyards and private sellers across South Mumbai to carry out a complete ${checklistPoints}-point pre-delivery inspection before you pay.`,
     heroExtended:
       "You get an independent, photo-backed report on your phone within 15 minutes, which gives you either the confidence to proceed or real leverage to negotiate.",
     areaNote:
@@ -57,9 +59,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Bandra, Khar, Santacruz, Vile Parle and Andheri",
     metaTitle: "Car PDI Inspection Bandra to Andheri | Pre-Delivery and Used Car Checks",
     metaDescription:
-      "Independent car PDI and pre-purchase inspection in Bandra, Khar, Santacruz, Vile Parle, Andheri and Jogeshwari. 84-point checklist, photo evidence, report in 15 minutes. From ₹999.",
+      `Independent car PDI and pre-purchase inspection in Bandra, Khar, Santacruz, Vile Parle, Andheri and Jogeshwari. ${checklistPoints}-point checklist, photo evidence, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Taking delivery of a new car, or evaluating a pre-owned vehicle in Bandra, Khar, Santacruz or Andheri? Our inspectors reach showroom stockyards and seller locations quickly and carry out a full 84-point inspection on the spot.",
+      `Taking delivery of a new car, or evaluating a pre-owned vehicle in Bandra, Khar, Santacruz or Andheri? Our inspectors reach showroom stockyards and seller locations quickly and carry out a full ${checklistPoints}-point inspection on the spot.`,
     heroExtended:
       "You get detailed photo proof of paint depth, panel alignment, engine health and odometer integrity in a digital report delivered within 15 minutes, which is usually faster than the buyer's own visit.",
     areaNote:
@@ -108,9 +110,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Goregaon, Malad, Kandivali, Borivali and Dahisar",
     metaTitle: "Car PDI Inspection Goregaon to Borivali | Pre-Purchase Car Checks",
     metaDescription:
-      "Car PDI and pre-purchase inspection in Goregaon, Malad, Kandivali, Borivali and Dahisar. 84-point checklist, paint and battery checks, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection in Goregaon, Malad, Kandivali, Borivali and Dahisar. ${checklistPoints}-point checklist, paint and battery checks, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Buying a vehicle in Goregaon, Malad, Kandivali or Borivali? Do not rely solely on showroom promises or dealer claims. Our inspectors check 84 checklist points across paint quality, mechanical safety, electrical systems and cabin condition, on site.",
+      `Buying a vehicle in Goregaon, Malad, Kandivali or Borivali? Do not rely solely on showroom promises or dealer claims. Our inspectors check ${technicalItems} technical items across paint quality, mechanical safety, electrical systems and cabin condition, on site.`,
     heroExtended:
       "We inspect at dealer stockyards, pre-owned car outlets and private locations across the belt, and deliver photo proof within 15 minutes of finishing.",
     areaNote:
@@ -161,7 +163,7 @@ export const corridors = [
     metaDescription:
       "Car PDI and pre-purchase inspection in Mira Road, Bhayandar, Naigaon, Vasai Road, Nallasopara and Virar. Detect flood damage, repaint and hidden defects before delivery. From ₹999.",
     heroIntro:
-      "Buying a car across the Mira-Bhayandar or Vasai-Virar region? Do not accept delivery until an independent expert has reviewed the vehicle. Our mobile inspectors carry out a full 84-point evaluation at dealership yards and private locations.",
+      `Buying a car across the Mira-Bhayandar or Vasai-Virar region? Do not accept delivery until an independent expert has reviewed the vehicle. Our mobile inspectors carry out a full ${checklistPoints}-point evaluation at dealership yards and private locations.`,
     heroExtended:
       "We check paint thickness, engine fluid levels, tyre manufacturing dates, interior electricals and VIN numbers, and deliver a decision-ready report within 15 minutes.",
     areaNote:
@@ -210,9 +212,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Palghar District",
     metaTitle: "Car PDI Inspection Palghar District | Dahanu, Boival, Palghar and Manor Road",
     metaDescription:
-      "Car PDI and pre-purchase inspection across Palghar district: Palghar, Manor Road, Dahanu, Boival, Kelve and Vaitarna. 84-point checklist, photo evidence, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection across Palghar district: Palghar, Manor Road, Dahanu, Boival, Kelve and Vaitarna. ${checklistPoints}-point checklist, photo evidence, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Palghar is the northern limit of our coverage and the furthest we travel from our Thane base. We inspect new car deliveries and used car purchases across Palghar town, Manor Road, Dahanu, Boival, Kelve and the Vaitarna river belt, using the same 84-point checklist used everywhere.",
+      `Palghar is the northern limit of our coverage and the furthest we travel from our Thane base. We inspect new car deliveries and used car purchases across Palghar town, Manor Road, Dahanu, Boival, Kelve and the Vaitarna river belt, using the same ${checklistPoints}-point checklist used everywhere.`,
     heroExtended:
       "Because this belt runs on a planned route rather than same-day callouts, booking a day ahead gets you a confirmed slot instead of a hopeful one. The report still reaches you within 15 minutes of the inspection finishing, and there is no travel charge.",
     areaNote:
@@ -261,9 +263,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Navi Mumbai",
     metaTitle: "Car PDI Inspection Navi Mumbai | Vashi, Nerul, Kharghar, Taloja and Panvel",
     metaDescription:
-      "Car PDI and pre-purchase inspection across Navi Mumbai: Vashi, Nerul, Airoli, Taloja, Kharghar, Kalundre, Ulwe and Panvel. 84-point checklist, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection across Navi Mumbai: Vashi, Nerul, Airoli, Taloja, Kharghar, Kalundre, Ulwe and Panvel. ${checklistPoints}-point checklist, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Navi Mumbai is one of our highest-volume belts, with new-car deliveries concentrated in Taloja, Airoli and Panvel MIDC, and a very active second-hand market across Kharghar, Nerul and Vashi. We inspect in all eight areas we cover, using the same 84-point checklist used everywhere.",
+      `Navi Mumbai is one of our highest-volume belts, with new-car deliveries concentrated in Taloja, Airoli and Panvel MIDC, and a very active second-hand market across Kharghar, Nerul and Vashi. We inspect in all eight areas we cover, using the same ${checklistPoints}-point checklist used everywhere.`,
     heroExtended:
       "We travel to the car, wherever it is: dealer yard, MIDC premises, society parking or a private home. The report reaches you on WhatsApp and email within 15 minutes, and there is no travel charge anywhere in Navi Mumbai.",
     areaNote:
@@ -312,11 +314,11 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Thane, Powai and Ghodbunder Road",
     metaTitle: "Thane's Trusted Independent Car PDI Expert | Thane, Ghodbunder Road, Kalwa and Powai",
     metaDescription:
-      "Car PDI and pre-purchase inspection in Thane West, Majiwada, Ghodbunder Road, Kalwa, Powai, Vikhroli, Bhandup and Mulund. 84-point checklist, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection in Thane West, Majiwada, Ghodbunder Road, Kalwa, Powai, Vikhroli, Bhandup and Mulund. ${checklistPoints}-point checklist, report in 15 minutes. From ₹999.`,
     heroIntro:
       "Thane is our home belt, which is why same-day and same-evening availability here is the most reliable of anywhere we cover. We inspect across Thane West, Majiwada, Ghodbunder Road, Kalwa, Powai, Vikhroli, Bhandup and Mulund.",
     heroExtended:
-      "Whether you are buying a brand new SUV at a Ghodbunder Road showroom or evaluating a pre-owned sedan in Kalwa, our field inspectors perform a complete 84-point audit with photo evidence delivered in 15 minutes.",
+      `Whether you are buying a brand new SUV at a Ghodbunder Road showroom or evaluating a pre-owned sedan in Kalwa, our field inspectors perform a complete ${checklistPoints}-point audit with photo evidence delivered in 15 minutes.`,
     areaNote:
       "Ghodbunder Road has the highest density of new-car showrooms in the district, and Powai and Mulund have the best-lit inspection conditions in the city. Both matter when you are booking.",
     factors: [
@@ -363,9 +365,9 @@ export const corridors = [
     h1: "Car PDI and Pre-Purchase Inspection in Kalyan, Dombivli, Mumbra and Ambernath",
     metaTitle: "Car PDI and Pre-Purchase Inspection Kalyan, Dombivli, Thakurli and Diva",
     metaDescription:
-      "Car PDI and pre-purchase inspection in Kalyan, Dombivli, Thakurli, Mumbra, Diva and Ambernath. 84-point checklist, photo evidence, report in 15 minutes. From ₹999.",
+      `Car PDI and pre-purchase inspection in Kalyan, Dombivli, Thakurli, Mumbra, Diva and Ambernath. ${checklistPoints}-point checklist, photo evidence, report in 15 minutes. From ₹999.`,
     heroIntro:
-      "Buying a car in Kalyan, Dombivli, Thakurli or Diva? Protect your investment with an independent 84-point pre-delivery or pre-purchase inspection before you pay, delivered on site with photo evidence.",
+      `Buying a car in Kalyan, Dombivli, Thakurli or Diva? Protect your investment with an independent ${checklistPoints}-point pre-delivery or pre-purchase inspection before you pay, delivered on site with photo evidence.`,
     heroExtended:
       "This is the most price-sensitive belt we cover, and also the one where buyers most often skip an inspection and then absorb a much larger repair bill. The ₹999 inspection is the cheapest insurance on a used-car purchase.",
     areaNote:

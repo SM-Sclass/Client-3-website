@@ -1,3 +1,5 @@
+import { technicalSections } from "./checklist";
+
 export const locationsThaneKalyan = [
   {
     slug: "car-inspection-powai",
@@ -79,7 +81,7 @@ export const locationsThaneKalyan = [
       },
       {
         q: "How is the overall condition decided?",
-        a: "From the individual grades across all 11 sections. The report closes with Excellent, Good, Minor Issues or Major Issues, plus written remarks you can act on."
+        a: `From the individual grades across all ${technicalSections} sections. The report closes with Excellent, Good, Minor Issues or Major Issues, plus written remarks you can act on.`
       }
     ]
   },
@@ -155,7 +157,7 @@ export const locationsThaneKalyan = [
       },
       {
         q: "What is included in a PDI report?",
-        a: "A graded result for each of the 84 checklist points across 11 sections, written remarks, an overall condition grade, VIN and odometer photographs, and photo evidence for every finding."
+        a: `Grades for applicable checks across ${technicalSections} vehicle inspection sections, written remarks, an overall condition grade, VIN and odometer photographs, and photo evidence for every finding.`
       },
       {
         q: "Is Mulund covered in the standard service area?",
@@ -495,7 +497,7 @@ export const locationsThaneKalyan = [
       },
       {
         q: "What is included in the final report?",
-        a: "A grade for every one of the 84 checklist points across 11 sections, written remarks, an overall condition grade, VIN and odometer photographs, and photo evidence for each finding."
+        a: `Grades for applicable checks across ${technicalSections} vehicle inspection sections, written remarks, an overall condition grade, VIN and odometer photographs, and photo evidence for each finding.`
       },
       {
         q: "How do I confirm a booking?",

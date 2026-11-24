@@ -4,14 +4,12 @@ import { Icon } from "@/components/icon";
 import { JsonLd } from "@/components/json-ld";
 import { ProofHighlights } from "@/components/proof-highlights";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { SectionLabel } from "@/components/section-label";
 import {
   contactConfig,
   openingHours,
   serviceFacts,
   siteConfig,
-  subpageNavigation,
   whatsappLink
 } from "@/app/data/business";
 import { getAreasByZone, zoneById, zones } from "@/app/data/locations";
@@ -42,10 +40,10 @@ export function buildCorridorMetadata(corridor) {
       type: "article",
       images: [
         {
-          url: "/Checkmatepdilogo.png",
-          width: 800,
-          height: 600,
-          alt: `Car PDI inspection in ${corridor.label}`
+          url: "/assets/logo.png",
+          width: 1068,
+          height: 476,
+          alt: siteConfig.name
         }
       ]
     },
@@ -53,7 +51,7 @@ export function buildCorridorMetadata(corridor) {
       card: "summary_large_image",
       title: corridor.metaTitle,
       description,
-      images: ["/Checkmatepdilogo.png"]
+      images: ["/assets/logo.png"]
     }
   };
 }
@@ -100,7 +98,6 @@ export function CorridorPage({ corridor }) {
   return (
     <main className="page-shell" id="top">
       <JsonLd data={jsonLd} />
-      <SiteHeader navigation={subpageNavigation} />
 
       <section className="hero-section">
         <div className="container">

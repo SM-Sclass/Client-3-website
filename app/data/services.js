@@ -1,7 +1,7 @@
 import { serviceFacts } from "./business";
 
 const sharedChecklistSummary =
-  "The inspection runs through 11 sections: buyer and vehicle details, exterior paint and panel alignment, glass, tyres and wheels, interior, engine bay, electrical system, photo evidence, final condition grading, and inspector sign-off. Every item is graded OK, Minor Issue or Major Issue.";
+  `The report has ${serviceFacts.reportSections} sections, covering customer and vehicle details, ${serviceFacts.technicalSections} areas of vehicle inspection, photo uploads, the final result, report details and inspector sign-off. Applicable vehicle checks are graded OK, Minor Issue or Major Issue.`;
 
 export const services = [
   {
@@ -15,13 +15,13 @@ export const services = [
     metaTitle:
       "Car PDI Inspection in Mumbai | Pre-Delivery Check Before You Pay",
     metaDescription:
-      "New car PDI in Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. 84-point pre-delivery check with paint thickness, VIN and odometer verification. Report in 15 minutes. From ₹999.",
+      `New car PDI in Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. ${serviceFacts.checklistPointsLabel} pre-delivery check with paint thickness, VIN and odometer verification. Report in 15 minutes. From ₹999.`,
     h1: "Car Pre-Delivery Inspection (PDI) in Mumbai",
     heroIntro:
       "A pre-delivery inspection is an independent technical check of a new car, done at the dealership yard or stockyard, before you pay the token amount or sign the delivery papers. Our inspectors work for you, not the dealer, and the report reaches you within 15 minutes so you can decide while you are still standing at the counter.",
     heroPoints: [
       "Independent of the dealership and the brand",
-      "84 checklist points across 11 sections",
+      `${serviceFacts.checklistPoints} core items in a ${serviceFacts.reportSections}-section report`,
       "VIN and odometer photographed and recorded",
       "Photo evidence for every finding",
       "Report within 15 minutes of inspection",
@@ -39,7 +39,7 @@ export const services = [
       {
         h2: "What our PDI actually checks",
         body: [
-          "The same 84-point checklist is used for every car in every location, so a report from Vasai is directly comparable to one from Dadar. " + sharedChecklistSummary,
+          `The same ${serviceFacts.checklistPointsLabel} checklist is used for every car in every location, so a report from Vasai is directly comparable to one from Dadar. ` + sharedChecklistSummary,
           "For a new car specifically, the following get the most attention, because they are the ones that get quietly fudged at the yard."
         ],
         list: [
@@ -75,7 +75,7 @@ export const services = [
         list: [
           "Share vehicle details and location on WhatsApp or phone",
           "Confirm the slot and the inspection point with us",
-          "Inspector completes the 84-point checklist on site",
+          `Inspector completes the ${serviceFacts.checklistPointsLabel} checklist on site`,
           "Walkthrough of every finding and its photographs",
           "Decision-ready report on WhatsApp and email within 15 minutes"
         ]
@@ -262,7 +262,7 @@ export const services = [
       "No travel charge in any service area",
       "Same price for evening and weekend slots",
       "Price confirmed before booking",
-      "84 checklist points across 11 sections",
+      `${serviceFacts.checklistPoints} core items in a ${serviceFacts.reportSections}-section report`,
       "Report within 15 minutes, included"
     ],
     sections: [
@@ -281,10 +281,10 @@ export const services = [
       {
         h2: "What is included from ₹999",
         body: [
-          "The entry package is a complete inspection, not a partial one. You get the full 84-point checklist across 11 sections, a grade for every item, written remarks, an overall condition grade, and photo evidence for every finding, delivered as a report within 15 minutes."
+          `The entry package is a complete inspection, not a partial one. You get the full ${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections, grades for applicable checks, written remarks, an overall condition grade, and photo evidence for every finding, delivered as a report within 15 minutes.`
         ],
         list: [
-          "All 11 checklist sections, 84 points, graded OK, Minor Issue or Major Issue",
+          `${serviceFacts.gradedChecks} graded checks across ${serviceFacts.technicalSections} vehicle inspection sections. Applicable checks are graded OK, Minor Issue or Major Issue.`,
           "Exterior paint, panel alignment, glass, tyres and wheels",
           "Interior condition, engine bay fluids and battery, full electrical functional check",
           "VIN plate and odometer photographed and recorded",
@@ -350,20 +350,20 @@ export const services = [
   {
     slug: "what-we-check",
     summary:
-      "The complete 84-point checklist across 11 sections, the OK / Minor Issue / Major Issue grading scale, and an honest note on what a PDI does not cover.",
-    name: "What a PDI checks: the 84-point checklist",
+      `The complete ${serviceFacts.checklistPointsLabel} checklist across ${serviceFacts.checklistSections} sections, the OK / Minor Issue / Major Issue grading scale, and an honest note on what a PDI does not cover.`,
+    name: `What a PDI checks: the ${serviceFacts.checklistPointsLabel} checklist`,
     navLabel: "What We Check",
     type: "Inspection Checklist",
     priceFrom: 999,
     metaTitle:
-      "What Does a Car PDI Check? 84-Point Checklist and Grading",
+      `What Does a Car PDI Check? ${serviceFacts.checklistPointsLabel} Checklist and Grading`,
     metaDescription:
-      "The full 84-point car PDI checklist across 11 sections: paint thickness, glass, tyres, interior, engine bay, electricals, underbody, photo evidence and condition grading. Mumbai, Palghar, Navi Mumbai, Thane, Kalyan.",
+      `The full ${serviceFacts.checklistPointsLabel} car PDI checklist across ${serviceFacts.checklistSections} sections: paint thickness, glass, tyres, interior, engine bay, electricals, underbody, photo evidence and condition grading. Mumbai, Palghar, Navi Mumbai, Thane, Kalyan.`,
     h1: "What Does a Car PDI Check?",
     heroIntro:
-      "Every CheckMate inspection runs through the same 84 checklist points across 11 sections, at every location, in the same grading format. Nothing is skipped because a car is a hatchback, and nothing is added because a car is a premium SUV. The checklist below is the complete list.",
+      `Every CheckMate inspection runs through the same ${serviceFacts.checklistPoints} core items in a ${serviceFacts.reportSections}-section report, at every location, in the same grading format. Checks apply according to the vehicle’s equipment. The checklist below is the complete list.`,
     heroPoints: [
-      "84 checklist points across 11 sections",
+      `${serviceFacts.checklistPoints} core items in a ${serviceFacts.reportSections}-section report`,
       "One grading scale: OK, Minor Issue, Major Issue",
       "Same checklist at all 56 locations",
       "Photo evidence for every finding",
@@ -385,7 +385,7 @@ export const services = [
       {
         h2: "Why the same checklist matters",
         body: [
-          "A checklist that changes from location to location is worthless as evidence, and it is also the reason many inspection reports cannot be compared. Because the same 84 points and the same grading scale are used in Churchgate, Virar, Palghar, Panvel, Thane and Kalyan, a report from one location can be compared directly with a report from another.",
+          `A checklist that changes from location to location is worthless as evidence, and it is also the reason many inspection reports cannot be compared. Because the same ${serviceFacts.checklistPoints} points and the same grading scale are used in Churchgate, Virar, Palghar, Panvel, Thane and Kalyan, a report from one location can be compared directly with a report from another.`,
           "It also means repeat customers accumulate a comparable history for the same car, which is how gradual change between inspections becomes visible."
         ],
         list: [
@@ -412,7 +412,7 @@ export const services = [
     faqs: [
       {
         q: "How many points are checked in a CheckMate PDI?",
-        a: "84 checklist points across 11 sections: buyer details, vehicle details including VIN and odometer, exterior inspection, glass, tyres and wheels, interior, engine bay, electrical system, photo evidence, final result, and inspector details with sign-off."
+        a: `${serviceFacts.technicalItems} technical items cover the exterior, glass, tyres and wheels, interior, drivetrain and chassis, under-bonnet and fluids, and electrical system. The full report has ${serviceFacts.reportSections} sections.`
       },
       {
         q: "What is the difference between Minor Issue and Major Issue?",

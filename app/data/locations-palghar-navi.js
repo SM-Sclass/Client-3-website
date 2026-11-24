@@ -1,3 +1,5 @@
+import { checklistPoints, gradedChecks, technicalSections, reportSections } from "./checklist";
+
 export const locationsPalgharNavi = [
   {
     slug: "car-inspection-palghar",
@@ -37,7 +39,7 @@ export const locationsPalgharNavi = [
       },
       {
         q: "What is included in the Palghar inspection?",
-        a: "The same 11-section, 84-point checklist used across Mumbai, Navi Mumbai, Thane and Kalyan, with photo evidence for every finding and a report within 15 minutes."
+        a: `The same ${checklistPoints}-point checklist used across Mumbai, Navi Mumbai, Thane and Kalyan, with photo evidence for every finding and a report within 15 minutes.`
       }
     ]
   },
@@ -243,7 +245,7 @@ export const locationsPalgharNavi = [
       },
       {
         q: "What does the PDI actually check?",
-        a: "Eleven sections covering vehicle identity, exterior and paint, glass, tyres, interior, engine bay, electricals, photo evidence, overall condition grading and inspector sign-off, totalling 84 checklist points."
+        a: `The report has ${reportSections} sections and ${gradedChecks} graded vehicle checks, with customer and vehicle details, photo evidence, a condition summary and inspector sign-off.`
       },
       {
         q: "Is the report the same across all locations?",
@@ -319,7 +321,7 @@ export const locationsPalgharNavi = [
     faqs: [
       {
         q: "What is included in a PDI for a new car in Nerul?",
-        a: "Paint and panel gap consistency, glass, tyres and manufacturing dates, interior condition, engine bay fluids and battery, full electrical functional check, VIN and odometer verification, and an overall condition grade, across 84 checklist points."
+        a: `Paint and panel gap consistency, glass, tyres and manufacturing dates, interior condition, engine bay fluids and battery, full electrical functional check, VIN and odometer verification, and an overall condition grade, across ${checklistPoints} checklist points.`
       },
       {
         q: "Can you explain the report in person?",
@@ -406,8 +408,8 @@ export const locationsPalgharNavi = [
         a: "We compare the odometer reading with driver seat bolster wear, pedal and steering wear, clutch and brake wear, interior wear, and the wear marks at jacking points. A mismatch is a Major Issue."
       },
       {
-        q: "What is the 84-point checklist?",
-        a: "Eleven sections: buyer details, vehicle identity including VIN and odometer, exterior and paint, glass, tyres and wheels, interior, engine bay, electrical system, photo evidence, final condition grading, and inspector details with sign-off."
+        q: `What is the ${checklistPoints}-point checklist?`,
+        a: `The report has ${reportSections} sections and ${gradedChecks} graded vehicle checks, with customer and vehicle details, photo evidence, a condition summary and inspector sign-off.`
       },
       {
         q: "Do you inspect cars at Taloja MIDC premises?",
@@ -457,7 +459,7 @@ export const locationsPalgharNavi = [
       },
       {
         q: "What does your report say about a new car's condition?",
-        a: "A graded result for every checklist item across 11 sections, an overall condition grade, written remarks, and photo evidence, delivered as a PDF within 15 minutes."
+        a: `Grades for applicable vehicle checks across ${technicalSections} sections, an overall condition grade, written remarks, and photo evidence, delivered as a PDF within 15 minutes.`
       }
     ]
   },

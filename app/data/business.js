@@ -1,3 +1,13 @@
+import {
+  checklistPoints,
+  checklistPointsLabel,
+  gradedChecks,
+  reportItems,
+  reportSections,
+  technicalItems,
+  technicalSections
+} from "./checklist";
+
 export const siteConfig = {
   name: "CheckMate PDI Exxpert",
   shortName: "CheckMate PDI",
@@ -6,7 +16,7 @@ export const siteConfig = {
   language: "en-IN",
   tagline: "Independent car PDI and pre-purchase inspection across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan.",
   description:
-    "Independent on-site car pre-delivery inspection (PDI) and used car pre-purchase inspection across Mumbai's western line, Palghar, Navi Mumbai, Thane and Kalyan. 80+ point checklist, photo evidence, report in 15 minutes. From ₹999.",
+    `Independent on-site car PDI and used car inspection across Mumbai, Palghar, Navi Mumbai, Thane and Kalyan. ${checklistPointsLabel} checklist, photo evidence, report in 15 minutes. From ₹999.`,
   foundedYear: 2023,
   priceRange: "₹999 - ₹4999",
   currencies: "INR"
@@ -41,9 +51,14 @@ export const openingHours = {
 };
 
 export const serviceFacts = {
-  checklistPoints: 84,
-  checklistPointsLabel: "80+ point",
-  checklistSections: 11,
+  checklistPoints,
+  checklistPointsLabel,
+  checklistSections: reportSections,
+  reportSections,
+  reportItems,
+  technicalItems,
+  technicalSections,
+  gradedChecks,
   photoEvidenceLabel: "photo evidence for every finding",
   reportDeliveryMinutes: 15,
   inspectionDurationMinutes: "45-60",
@@ -90,23 +105,13 @@ export const serviceCatalog = [
   },
   {
     id: "what-we-check",
-    name: "What a PDI checks: the 84-point checklist",
+    name: `What a PDI checks: the ${checklistPointsLabel} checklist`,
     slug: "what-we-check",
     type: "Inspection Checklist",
     priceFrom: 999,
     summary:
-      "The complete 84-point checklist across 11 sections, the OK / Minor Issue / Major Issue grading scale, and an honest statement of what a PDI does not cover."
+      `The full ${reportSections}-section report, with ${checklistPoints} core checklist items, a dealer-action summary and grading for applicable vehicle checks.`
   }
-];
-
-export const subpageNavigation = [
-  { label: "PDI Service", href: "/services/pre-delivery-inspection" },
-  { label: "Used Car Check", href: "/services/pre-purchase-inspection" },
-  { label: "What We Check", href: "/services/what-we-check" },
-  { label: "Cost", href: "/services/car-inspection-cost" },
-  { label: "Service Areas", href: "/service-areas" },
-  { label: "Sample Report", href: "/sample-report" },
-  { label: "Contact", href: "/contact" }
 ];
 
 export function absoluteUrl(path = "/") {

@@ -1,10 +1,7 @@
 import Image from "next/image";
-import { BrandMark } from "@/components/brand-mark";
-import { HeroSlider } from "@/components/hero-slider";
 import { ProofSlider } from "@/components/proof-slider";
 import { InspectionSectionCard } from "@/components/inspection-section-card";
 import { SectionLabel } from "@/components/section-label";
-import { SiteHeader } from "@/components/site-header";
 import { StatusPill } from "@/components/status-pill";
 import { Icon } from "@/components/icon";
 import { ReviewSection } from "@/components/review-section";
@@ -12,155 +9,108 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { getAreasByZone, serviceAreaSummary, zones } from "@/app/data/locations";
 import { services } from "@/app/data/services";
+import { inspectionSections } from "@/app/data/checklist";
+import { contactConfig, openingHours, serviceFacts, whatsappLink } from "@/app/data/business";
+import { faqSchema } from "@/app/data/schema";
+import { JsonLd } from "@/components/json-ld";
 import {
-  confidenceStats,
   contactActions,
   contactItems,
   ctaChecklist,
   evidenceItems,
-  heroHighlights,
-  inspectionSections,
-  navigation,
   processSteps,
   professionalPoints,
   reportMeta,
   reportRemark,
-  reportRows,
   sampleVehicle,
   serviceNotes,
   testimonial,
   trustPillars,
-  heroSlides,
   proofGallery,
   verifiedReviews,  faqItems
 } from "@/app/site-data";
 
-const heroScore = 94;
-const reportScore = 84;
-const coverageLegend = ["OK", "Minor Issue", "Major Issue"];
+export const metadata = {
+  alternates: { canonical: "/", types: { "text/plain": "/llms.txt" } }
+};
 
-function ScoreRing({ label, score, suffix = "%" }) {
-  return (
-    <div className="score-block">
-      {label && <p className="meta-label">{label}</p>}
-      <div className="gauge" style={{ "--score-angle": `${score * 3.6}deg` }}>
-        <div className="gauge-center">
-          <strong>
-            {score}
-            {suffix}
-          </strong>
-          <span>{suffix === "%" ? "Verified" : "Score"}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const bookingWhatsApp = whatsappLink("Hi, I'd like to book a car inspection. Can you confirm pricing and availability?");
+const coverageLegend = ["OK", "Minor Issue", "Major Issue"];
 
 export default function HomePage() {
   return (
-    <main className="page-shell" id="top">
-      <SiteHeader navigation={navigation} />
-
-      {/* ── HERO ── */}
-      <section className="hero-section">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <div className="hero-price-pill">Start a PDI Inspection for ₹999</div>
-            <SectionLabel>Trusted car inspection for every buyer</SectionLabel>
-            <h1>Premium Pre-Delivery Inspections for Confident Car Purchases.</h1>
-            <p className="hero-text">
-              Our certified inspectors carry out a complete 84-point pre-delivery inspection, capturing every major detail with photo-backed evidence and clear, expert findings.
-            </p>
-            <p className="hero-text hero-text-extended">
-              Get a polished, decision-ready report within 15 minutes — so you can buy with confidence and avoid unexpected issues after handover.
-            </p>
-            <p className="hero-text hero-text-extended" style={{ fontSize: '0.92rem', color: 'var(--text-soft)', marginTop: '8px' }}>
-              Serving car buyers across the Mumbai western line and Thane–Kalyan belt — from Churchgate to Virar, and Thane to Kalyan.
-            </p>
-
-            <div className="hero-badge-grid">
-              <div className="hero-badge-card">
-                <Icon className="button-icon" name="check" />
-                84-point checklist
-              </div>
-              <div className="hero-badge-card">
-                <Icon className="button-icon" name="rupee" />
-                Starts at ₹999
-              </div>
-            </div>
-
-            <div className="hero-actions">
-              <a className="button button-solid shimmer-effect" href="https://wa.me/917039935536?text=Hi%2C%20I%20want%20to%20book%20a%20PDI%20inspection." target="_blank" rel="noopener noreferrer">
-                <Icon className="button-icon" name="whatsapp" />
-                Book Your Inspection
-              </a>
-              <a className="button button-outline" href="#our-process">
-                See the Process
-              </a>
-            </div>
-
-            <div className="hero-trustline">
-              <div className="hero-rating">
-                <Icon className="trust-icon" name="shield" />
-                <span>84-point checklist, photo evidence, report in 15 minutes.</span>
-              </div>
-            </div>
+    <main className="page-shell home-page" id="top">
+      <JsonLd data={faqSchema(faqItems, "/")} />
+      <section className="booking-hero" aria-labelledby="home-title">
+        <div className="booking-hero-content">
+          <h1 id="home-title">Know the car before you buy it.</h1>
+          <p>
+            Independent new car PDI and used car inspections at the vehicle location across
+            Mumbai, Palghar, Navi Mumbai, Thane and Kalyan.
+          </p>
+          <div className="booking-actions">
+            <a className="button button-call" href={`tel:${contactConfig.phone}`}>
+              <Icon className="button-icon" name="phone" />
+              Call to book
+            </a>
+            <a className="button booking-chat" href={bookingWhatsApp} target="_blank" rel="noopener noreferrer">
+              <Icon className="button-icon" name="whatsapp" />
+              WhatsApp
+            </a>
           </div>
-
-          <div className="hero-showcase image-zoom-container" style={{ borderRadius: '28px' }}>
-            <Reveal delay={200} effect="fade-up">
-              <HeroSlider slides={heroSlides} />
-            </Reveal>
-          </div>
+          <p className="booking-hours">{contactConfig.phoneDisplay} · {openingHours.shortLabel}</p>
         </div>
+        <figure className="booking-hero-photo">
+          <Image
+            src="/assets/inspection-proof-02.jpeg"
+            alt="Front view of a Land Rover Defender from a CheckMate PDI inspection"
+            fill
+            preload
+            sizes="(max-width: 760px) 100vw, 50vw"
+          />
+          <figcaption>From a CheckMate PDI inspection</figcaption>
+        </figure>
       </section>
 
-      {/* ── CORE BENEFITS ── */}
-      <section className="feature-card-section">
-        <div className="container">
-          <Reveal className="section-heading section-heading-sm">
-            <SectionLabel>Core benefits</SectionLabel>
-            <h2>Inspection insights built to keep buyers in control.</h2>
-          </Reveal>
+      <div className="booking-facts">
+        <ul className="container" aria-label="Inspection at a glance">
+          <li><strong>{serviceFacts.priceFromLabel}</strong><span>Starting price</span></li>
+          <li><strong>{serviceFacts.checklistPoints} items</strong><span>{serviceFacts.gradedChecks} graded vehicle checks</span></li>
+          <li><strong>{serviceFacts.reportDeliveryMinutes} min</strong><span>Report after inspection</span></li>
+        </ul>
+      </div>
 
-          <div className="feature-card-grid">
-            {heroHighlights.map((item, index) => (
-              <Reveal key={item.title} delay={index * 100}>
-                <article className="feature-card">
-                  <div className="feature-card-icon">
-                    <Icon name="check" />
-                  </div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              </Reveal>
+      <section className="section-space home-services" id="services" aria-labelledby="services-title">
+        <div className="container">
+          <div className="section-heading section-heading-sm">
+            <h2 id="services-title">Find the right car inspection</h2>
+          </div>
+          <div className="home-service-grid">
+            {services.slice(0, 2).map((service) => (
+              <a className="home-service-card" href={`/services/${service.slug}`} key={service.slug}>
+                <Icon className="home-service-icon" name="shield" />
+                <h3>{service.navLabel}</h3>
+                <p>{service.summary}</p>
+                <span>View service <Icon className="button-icon" name="arrowRight" /></span>
+              </a>
             ))}
+            <a className="home-service-card home-report-card" href="/sample-report">
+              <Icon className="home-service-icon" name="report" />
+              <h3>See what your report looks like</h3>
+              <p>Preview the photos, condition grades and findings you’ll get after your inspection.</p>
+              <span>View sample report <Icon className="button-icon" name="arrowRight" /></span>
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* ── METRICS STRIP ── */}
-      <section className="metrics-strip">
-        <div className="container">
-          <div className="metrics-shell card">
-            <div className="metrics-copy">
-              <p className="eyebrow">Trusted by serious buyers</p>
-              <h3>Every report is built to help you decide with clarity, not guesswork.</h3>
-            </div>
-            <Reveal className="metrics-grid" delay={150}>
-              {confidenceStats.map((stat) => (
-                <div className="metric-chip" key={stat}>
-                  <Icon className="metric-chip-icon" name="shield" />
-                  <span>{stat}</span>
-                </div>
-              ))}
-            </Reveal>
+          <div className="home-service-links">
+            <a href="/services/car-inspection-cost">See inspection pricing</a>
+            <a href="/services/what-we-check">Read the full checklist</a>
+            <a href="/service-areas">Check your service area</a>
           </div>
         </div>
       </section>
 
       {/* ── PROOF SLIDER ── */}
-      <section className="section-space">
+      <section className="section-space" id="proof">
         <div className="container hero-grid" style={{ alignItems: "center" }}>
           <Reveal className="hero-copy">
             <SectionLabel>Real Inspection Proofs</SectionLabel>
@@ -195,7 +145,7 @@ export default function HomePage() {
               </p>
               <div className="section-intro-metrics">
                 <div>
-                  <strong>84</strong>
+                  <strong>{serviceFacts.checklistPoints}</strong>
                   <span>checklist points</span>
                 </div>
                 <div>
@@ -265,7 +215,6 @@ export default function HomePage() {
 
       {/* ── INSPECTION COVERAGE ── */}
       <section className="section-band" id="inspection-areas">
-        <div id="proof" className="proof-anchor" />
         <div className="container">
           <div className="section-heading">
             <SectionLabel>Complete inspection coverage</SectionLabel>
@@ -314,7 +263,7 @@ export default function HomePage() {
                   <ul className="cta-list" style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                       <Icon name="check" className="cta-list-icon" style={{ marginTop: '2px', flexShrink: 0, color: 'var(--green-600)' }} /> 
-                      <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>Full 84-point evaluation</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>Inspection findings and photos</span>
                     </li>
                     <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                       <Icon name="check" className="cta-list-icon" style={{ marginTop: '2px', flexShrink: 0, color: 'var(--green-600)' }} /> 
@@ -339,35 +288,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── SERVICES ── */}
-      <section className="section-space" id="services">
-        <div className="container">
-          <div className="section-heading">
-            <SectionLabel>What we do</SectionLabel>
-            <h2>Two inspections, one checklist, every location.</h2>
-            <p>
-              Whether the car is brand new and sitting in a dealer yard, or second hand and being
-              sold by a private owner, the discipline is the same: a fixed checklist, a fixed grading
-              scale, and photo evidence for every finding.
-            </p>
-          </div>
-
-          <div className="feature-card-grid">
-            {services.map((service) => (
-              <a className="feature-card" href={`/services/${service.slug}`} key={service.slug}>
-                <div className="feature-card-icon">
-                  <Icon name="report" />
-                </div>
-                <h3>{service.navLabel}</h3>
-                <p>{service.summary}</p>
-                <span className="feature-card-link">Read more</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── COVERAGE ZONES ── */}
       <section className="section-band" id="coverage">
         <div className="container">
           <div className="section-heading section-heading-split">
@@ -431,12 +351,10 @@ export default function HomePage() {
         <div className="container">
           <div className="cta-card">
             <div className="cta-copy">
-              <div className="hero-price-pill" style={{ marginBottom: '18px' }}>Start a PDI Inspection for ₹999</div>
-              <SectionLabel>Book your inspection</SectionLabel>
-              <h2>Simple to book. Easy to understand. Fast to act on.</h2>
+              <h2>Book your car inspection</h2>
               <p>
-                Share the car details, preferred slot, and city. The team will guide the next steps and
-                send the report in a format you can act on immediately.
+                Call or WhatsApp with the car model, vehicle location and preferred date.
+                We’ll confirm the price and available slots.
               </p>
 
               <ul className="cta-list">
