@@ -1,4 +1,5 @@
 import { Inter, Sora } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 import { JsonLd } from "@/components/json-ld";
@@ -133,6 +134,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang={siteConfig.language}>
       <head>
+        <Script id="google-tag-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-P9DQGBWJ"
+          strategy="beforeInteractive"
+        />
         <JsonLd data={jsonLd} />
         <meta name="geo.region" content="IN-MH" />
         <meta name="geo.placename" content="Mumbai" />
